@@ -1,0 +1,13 @@
+[00:02:20] [Client thread/INFO]: Setting user: Chaoying_L
+[00:02:20] [Client thread/INFO]: (Session ID is token:1e302fe1478c4611871febbb57f65ea3:61cb666dbb6c39568e159ddbc36cc3df)
+[00:02:21] [Client thread/INFO]: LWJGL Version: 2.9.4
+[00:02:22] [Client thread/INFO]: Reloading ResourceManager: Default, !   ¡ìceum3 Pink.zip
+[00:02:22] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[00:02:22] [Thread-5/INFO]: Initializing LWJGL OpenAL
+[00:02:22] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[00:02:22] [Thread-5/INFO]: OpenAL initialized.
+[00:02:23] [Sound Library Loader/INFO]: Sound engine started
+[00:02:24] [Client thread/INFO]: Created: 2048x2048 textures-atlas
+[00:02:26] [Client thread/INFO]: Stopping!
+[00:02:26] [Client thread/INFO]: SoundSystem shutting down...
+[00:02:26] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
