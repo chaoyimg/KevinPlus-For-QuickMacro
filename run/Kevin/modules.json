@@ -88,7 +88,7 @@
     "SwordsFirst": false
   },
   "BackTrack": {
-    "State": true,
+    "State": false,
     "KeyBind": 0,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -1864,7 +1864,7 @@
     "KeyBind": 0,
     "Hide": false,
     "AutoDisable": "Disable",
-    "BreakDamage": 0.8
+    "BreakDamage": 0.3
   },
   "FastPlace": {
     "State": false,
