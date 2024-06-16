@@ -17,7 +17,7 @@
     "AutoDisable": "Disable",
     "Horizontal": 0.0,
     "Vertical": 0.0,
-    "Mode": "IntaveJump",
+    "Mode": "Click",
     "SimpleCancelTransactions": false,
     "SimpleCancelTransactionsCount": 6,
     "ReverseStrength": 1.0,
