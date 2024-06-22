@@ -121,6 +121,8 @@ class ModuleManager : Listenable {
             Translator
         )
         movementList = arrayListOf(
+            NoBlockSlow(),
+            FastLadder(),
             AirJump(),
             AirLadder(),
             AntiVoid(),

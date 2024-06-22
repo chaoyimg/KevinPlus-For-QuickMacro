@@ -517,11 +517,12 @@ class BackTrack: Module("BackTrack", "Lets you attack people in their previous l
                 val packet = it.packet
                 try {
                     val packetEvent = PacketEvent(packet,PacketEvent.Type.SEND)
-                    KevinClient.eventManager.callEvent(packetEvent)
-                    if (!packetEvent.isCancelled) packet.processPacket(netHandler)
                     val packetEvent1 = PacketEvent(packet,PacketEvent.Type.RECEIVE)
                     KevinClient.eventManager.callEvent(packetEvent1)
                     if (!packetEvent1.isCancelled) packet.processPacket(netHandler)
+                    KevinClient.eventManager.callEvent(packetEvent)
+                    if (!packetEvent.isCancelled) packet.processPacket(netHandler)
+
                 } catch (_: ThreadQuickExitException) { }
             }
         }
@@ -550,11 +551,11 @@ class BackTrack: Module("BackTrack", "Lets you attack people in their previous l
                 storagePackets.remove(it)
                 try {
                     val packetEvent = PacketEvent(packet,PacketEvent.Type.SEND)
-                    KevinClient.eventManager.callEvent(packetEvent)
-                    if (!packetEvent.isCancelled) packet.processPacket(netHandler)
                     val packetEvent1 = PacketEvent(packet,PacketEvent.Type.RECEIVE)
                     KevinClient.eventManager.callEvent(packetEvent1)
                     if (!packetEvent1.isCancelled) packet.processPacket(netHandler)
+                    KevinClient.eventManager.callEvent(packetEvent)
+                    if (!packetEvent.isCancelled) packet.processPacket(netHandler)
                 } catch (_: ThreadQuickExitException) {}
             } else {
                 break
@@ -605,12 +606,12 @@ class BackTrack: Module("BackTrack", "Lets you attack people in their previous l
         while (storageSendPackets.isNotEmpty()) {
             storageSendPackets.removeAt(0).let {
                 try {
-                    val packetEvent = PacketEvent(it,PacketEvent.Type.SEND)
-                    KevinClient.eventManager.callEvent(packetEvent)
-                    if (!packetEvent.isCancelled) mc.netHandler.networkManager.sendPacketNoEvent(it)
                     val packetEvent1 = PacketEvent(it,PacketEvent.Type.RECEIVE)
+                    val packetEvent = PacketEvent(it,PacketEvent.Type.SEND)
                     KevinClient.eventManager.callEvent(packetEvent1)
                     if (!packetEvent1.isCancelled) mc.netHandler.networkManager.sendPacketNoEvent(it)
+                    KevinClient.eventManager.callEvent(packetEvent)
+                    if (!packetEvent.isCancelled) mc.netHandler.networkManager.sendPacketNoEvent(it)
                 } catch (e: Exception) {
                     KevinClient.hud.addNotification(Notification("Something went wrong when sending packet reversing", "BackTrack"))
                 }

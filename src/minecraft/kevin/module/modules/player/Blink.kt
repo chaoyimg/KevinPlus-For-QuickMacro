@@ -21,10 +21,13 @@ import kevin.event.UpdateEvent
 import kevin.module.*
 import kevin.utils.ColorUtils.rainbow
 import kevin.utils.MSTimer
+import kevin.utils.PacketUtils
 import kevin.utils.RenderUtils
 import net.minecraft.client.entity.EntityOtherPlayerMP
 import net.minecraft.network.Packet
+import net.minecraft.network.play.INetHandlerPlayClient
 import net.minecraft.network.play.client.*
+import net.minecraft.network.play.server.S32PacketConfirmTransaction
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 import java.util.*
@@ -40,10 +43,12 @@ class Blink : Module("Blink", "Suspends all movement packets.", category = Modul
     private val pulseDelayValue = IntegerValue("PulseDelay", 1000, 500, 5000)
     private val pingMode = ListValue("PingMode", arrayOf("None", "Storage", "Cancel"), "None")
     private val pulseTimer = MSTimer()
+    private val transAction = BooleanValue("InvalidTransaction",true)
     private val colorRainbow = BooleanValue("ColorRainbow",true)
     private val colorRedValue = IntegerValue("R",255,0,255)
     private val colorGreenValue = IntegerValue("G",255,0,255)
     private val colorBlueValue = IntegerValue("B",255,0,255)
+    private val inBus = LinkedList<Packet<INetHandlerPlayClient>>()
 
     override fun onEnable() {
         val thePlayer = mc.thePlayer ?: return
@@ -103,7 +108,12 @@ class Blink : Module("Blink", "Suspends all movement packets.", category = Modul
             event.cancelEvent()
             packets.add(packet)
         }
-
+        if (packet is S32PacketConfirmTransaction && transAction.get()) {
+            event.cancelEvent()
+            @Suppress("UNCHECKED_CAST")
+            inBus.add(packet as Packet<INetHandlerPlayClient>)
+            PacketUtils.sendPacketNoEvent(C0FPacketConfirmTransaction(0, 514.toShort(), true))
+        }
         if ((packet) is C0FPacketConfirmTransaction || (packet) is C00PacketKeepAlive && pingMode notEqual "None") {
             event.cancelEvent()
             if (pingMode equal "Storage") c0fs.add(packet)
@@ -166,6 +176,9 @@ class Blink : Module("Blink", "Suspends all movement packets.", category = Modul
                 mc.netHandler.networkManager.sendPacket(c0fs.take())
             }
 
+            while (inBus.isNotEmpty() && transAction.get()) {
+                inBus.poll().processPacket(mc.netHandler)
+            }
             disableLogger = false
         } catch (e: Exception) {
             e.printStackTrace()
