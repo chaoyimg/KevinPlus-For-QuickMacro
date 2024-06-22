@@ -47,6 +47,7 @@ class SuperKnockback : Module("SuperKnockback", "Increases knockback dealt to ot
         }
     }
     private val hurtTimeValue = IntegerValue("HurtTime", 10, 0, 10)
+    private val packetValue = IntegerValue("PacketVue", 2, 1, 10) {modeValue equal "OnlyStart"}
     private val delayValue = IntegerValue("Delay", 0, 0, 500)
     private val onlyMoveValue = BooleanValue("OnlyMove", true)
     private val onlyGroundValue = BooleanValue("OnlyGround", false)
@@ -80,7 +81,9 @@ class SuperKnockback : Module("SuperKnockback", "Increases knockback dealt to ot
 
             when (modeValue.get()) {
                 "OnlyStart" -> {
-                    mc.netHandler.addToSendQueue(C0BPacketEntityAction(player, C0BPacketEntityAction.Action.START_SPRINTING))
+                    repeat(packetValue.get()) {
+                        mc.netHandler.addToSendQueue(C0BPacketEntityAction(player, C0BPacketEntityAction.Action.START_SPRINTING))
+                    }
                     player.serverSprintState = true
                 }
                 "ExtraPacket" -> {

@@ -18,6 +18,8 @@ import kevin.event.EventTarget
 import kevin.event.Listenable
 import kevin.event.WorldEvent
 import net.minecraft.network.Packet
+import net.minecraft.network.play.server.S12PacketEntityVelocity
+import kotlin.math.roundToInt
 
 object PacketUtils : MinecraftInstance(), Listenable {
     val packetList = arrayListOf<Packet<*>>()
@@ -34,4 +36,10 @@ object PacketUtils : MinecraftInstance(), Listenable {
     fun onWorld(event: WorldEvent) {}
 
     override fun handleEvents() = true
+
+    var S12PacketEntityVelocity.realMotionY
+        get() = motionY / 8000.0
+        set(value) {
+            motionX = (value * 8000.0).roundToInt()
+        }
 }

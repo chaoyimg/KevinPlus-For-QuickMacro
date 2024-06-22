@@ -19,31 +19,26 @@ import kevin.main.KevinClient
 import kevin.module.*
 import kevin.module.modules.movement.Speed
 import kevin.utils.*
+import kevin.utils.PacketUtils.realMotionY
 import net.minecraft.block.BlockAir
 import net.minecraft.client.settings.GameSettings
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.network.play.client.C02PacketUseEntity
-import net.minecraft.network.play.client.C03PacketPlayer
-import net.minecraft.network.play.client.C07PacketPlayerDigging
-import net.minecraft.network.play.client.C0APacketAnimation
-import net.minecraft.network.play.client.C0FPacketConfirmTransaction
-import net.minecraft.network.play.server.S08PacketPlayerPosLook
+import net.minecraft.network.play.client.*
 import net.minecraft.network.play.server.S12PacketEntityVelocity
 import net.minecraft.network.play.server.S27PacketExplosion
 import net.minecraft.util.AxisAlignedBB
-import net.minecraft.util.BlockPos
-import net.minecraft.util.EnumFacing
-import net.minecraft.util.MathHelper
+import net.minecraft.util.Vec3
 import java.util.*
+import kotlin.math.floor
 
 class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of knockback you take.", category = ModuleCategory.COMBAT) {
     private val horizontalValue = FloatValue("Horizontal", 0F, -1F, 1F)
     private val verticalValue = FloatValue("Vertical", 0F, -1F, 1F)
     private val modeValue = ListValue("Mode", arrayOf("Simple", "AAC", "AACPush", "AACZero", "AACv4",
         "Reverse", "SmoothReverse", "HypixelReverse", "Jump", "Glitch", "AAC5Packet", "MatrixReduce", "MatrixSimple", "MatrixReverse",
-        "AllowFirst", "Click", "LegitSmart", "IntaveJump", "TestBuzzReverse", "MMC", "Down", "BlockCollection"), "Simple")
+        "AllowFirst", "Click", "LegitSmart", "IntaveJump", "TestBuzzReverse", "MMC", "Down", "BlockCollection", "AttackMix"), "Simple")
 
     // Simple
     private val simpleCancelTransaction = BooleanValue("SimpleCancelTransactions", false) { modeValue equal "Simple" }
@@ -62,13 +57,13 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
 
 
     // Click
-    private val clickCount = IntegerValue("ClickCount", 2, 1, 10) { modeValue equal "Click" }
-    private val clickTime = IntegerValue("ClickMinHurtTime", 8, 1, 10) { modeValue equal "Click" } // 10: only click when receive velocity packet
-    private val clickRange = FloatValue("ClickRange", 3.0F, 2.5F, 7F) { modeValue equal "Click" }
-    private val clickOnPacket = BooleanValue("ClickOnPacket", true) { modeValue equal "Click" }
-    private val clickSwing = BooleanValue("ClickSwing", false) { modeValue equal "Click" }
+    private val clickCount = IntegerValue("ClickCount", 2, 1, 10) { modeValue equal "Click" || modeValue equal "AttackMix" }
+    private val clickTime = IntegerValue("ClickMinHurtTime", 8, 1, 10) { modeValue equal "Click"  } // 10: only click when receive velocity packet
+    private val clickRange = FloatValue("ClickRange", 3.0F, 2.5F, 7F){ modeValue equal "Click" || modeValue equal  "AttackMix" }
+    private val clickOnPacket = BooleanValue("ClickOnPacket", true) { modeValue equal "Click"  }
+    private val clickSwing = BooleanValue("ClickSwing", false) { modeValue equal "Click"  }
     private val clickFakeSwing = BooleanValue("ClickFakeSwing", true) { modeValue equal "Click" }
-    private val clickOnlyNoBlocking = BooleanValue("ClickOnlyNoBlocking", false) { modeValue equal "Click" }
+    private val clickOnlyNoBlocking = BooleanValue("ClickOnlyNoBlocking", false){ modeValue equal "Click"  }
 
     // explosion value
     private val cancelExplosionPacket = BooleanValue("CancelExplosionPacket",false)
@@ -95,6 +90,11 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
     private var mmcTicks = 0
     private var mmcLastCancel = false
     private var mmcCanCancel = false
+
+    //AttackMix
+    private var motionReduce = 0.0
+    private var motionYReduce = 0.0
+    var attacked = false
 
     override val tag: String
         get() = if (modeValue.get() == "Simple") "H:${horizontalValue.get()*100}% V:${verticalValue.get()*100}%" else modeValue.get()
@@ -230,6 +230,39 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
             "allowfirst" -> if (velocityInput && mc.thePlayer.hurtTime == 8) {
                 velocityInput = false
                 mc.thePlayer.setVelocity(0.0, 0.0, 0.0)
+            }
+            "attackmix" -> {
+                if (velocityInput) {
+                    if (mc.thePlayer.hurtTime == 9) {
+                        if (++jumped % 2 == 0 && mc.thePlayer.onGround && mc.thePlayer.isSprinting && mc.currentScreen == null) {
+                            mc.gameSettings.keyBindJump.pressed = true
+                            jumped = 0 // reset
+                        }
+                    } else {
+                        mc.gameSettings.keyBindJump.pressed = GameSettings.isKeyDown(mc.gameSettings.keyBindJump)
+                    }
+                }
+                if (mc.thePlayer.serverSprintState && MovementUtils.isMoving) {
+                    if (velocityInput) {
+                        if (attacked) {
+                            if (motionReduce != 0.0 && motionYReduce != 0.0)
+                            {
+                                mc.thePlayer.motionX *= motionReduce
+                                mc.thePlayer.motionZ *= motionReduce
+                                mc.thePlayer.motionY = motionYReduce
+                            }
+                            attacked = false
+                        }
+                    }
+                    if (mc.thePlayer.hurtTime == 0) {
+                        velocityInput = false
+                    }
+                }
+                if (velocityInput) {
+                    if (mc.thePlayer.hurtTime != 9) {
+                        velocityInput = false
+                    }
+                }
             }
             "click" -> if (velocityInput && thePlayer.hurtTime >= clickTime.get()) {
                 if (!attackRayTrace(clickCount.get(), clickRange.get().toDouble(), thePlayer.isSprinting)) {
@@ -383,6 +416,37 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
                         mmcLastCancel = false
                     }
                 }
+                "attackmix" -> {
+                    velocityInput = true
+                        val currentRotation = RotationUtils.serverRotation!!
+                        val target = RaycastUtils.raycastEntityYaw(
+                            clickRange.get().toDouble(),
+                            currentRotation.yaw,
+                            currentRotation.pitch,
+                            object : RaycastUtils.EntityFilter {
+                                override fun canRaycast(entity: Entity?): Boolean {
+                                    return true  }
+                            }
+                        )
+                        if (target != null && target != mc.thePlayer) {
+                            for (i in 0 until clickCount.get()) {
+                                if (mc.thePlayer.serverSprintState && MovementUtils.isMoving) {
+                                    mc.netHandler.addToSendQueue(C02PacketUseEntity(target, C02PacketUseEntity.Action.ATTACK))
+                                    mc.netHandler.addToSendQueue(C0APacketAnimation())
+                                } else  {
+                                    mc.netHandler.addToSendQueue(C0APacketAnimation())
+                                    mc.netHandler.addToSendQueue(C0BPacketEntityAction(mc.thePlayer, C0BPacketEntityAction.Action.START_SPRINTING))
+                                    mc.thePlayer.setSprinting(false)
+                                    mc.netHandler.addToSendQueue(C02PacketUseEntity(target, C02PacketUseEntity.Action.ATTACK))
+                                }
+                            }
+                            attacked = true
+                            mc.thePlayer.isSprinting = true
+                            mc.thePlayer.serverSprintState = true
+                            motionReduce = getMotionNoXZ(packet)
+                            motionYReduce = packet.realMotionY
+                        }
+                }
                 "click" -> {
                     if (packet.motionX == 0 && packet.motionZ == 0) return
                     if (attackRayTrace(
@@ -433,7 +497,7 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
                 val x: Double = event.x.toDouble()
                 val y: Double = event.y.toDouble()
                 val z: Double = event.z.toDouble()
-                if (y == Math.floor(mc.thePlayer.posY) + 1) {
+                if (y == floor(mc.thePlayer.posY) + 1) {
                     event.boundingBox = AxisAlignedBB.fromBounds(0.0, 0.0, 0.0, 1.0, 0.0, 1.0).offset(x, y, z)
                 }
             }
@@ -457,6 +521,7 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
                 repeat(attack) { _ ->
                     if (clickSwing.get()) mc.thePlayer.swingItem()
                     else mc.netHandler.addToSendQueue(C0APacketAnimation())
+                    mc.netHandler.addToSendQueue(C0BPacketEntityAction(mc.thePlayer, C0BPacketEntityAction.Action.START_SPRINTING))
                     mc.netHandler.addToSendQueue(C02PacketUseEntity(it, C02PacketUseEntity.Action.ATTACK))
                 }
                 mc.thePlayer.attackTargetEntityWithCurrentItem(it)
@@ -464,5 +529,29 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
             return true
         }
         return false
+    }
+    private fun getMotionNoXZ(packetEntityVelocity: S12PacketEntityVelocity): Double {
+        val strength = Vec3(
+            packetEntityVelocity.motionX.toDouble(),
+            packetEntityVelocity.motionY.toDouble(),
+            packetEntityVelocity.motionZ.toDouble()
+        ).lengthVector()
+        val motionNoXZ: Double
+        motionNoXZ = if (strength >= 20000.0) {
+            if (mc.thePlayer.onGround) {
+                0.05425
+            } else {
+                0.065
+            }
+        } else if (strength >= 5000.0) {
+            if (mc.thePlayer.onGround) {
+                0.01575
+            } else {
+                0.045
+            }
+        } else {
+            0.00735
+        }
+        return motionNoXZ
     }
 }
