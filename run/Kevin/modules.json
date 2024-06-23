@@ -189,7 +189,7 @@
     "RestTick": 4
   },
   "Aura": {
-    "State": true,
+    "State": false,
     "KeyBind": 19,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -203,7 +203,7 @@
     "Range": 3.45,
     "ThroughWallsRange": 2.96,
     "RangeSprintReducement": 0.0,
-    "RangeMoveReducement": 0.0,
+    "RangeMoveReducement": 0.02,
     "DiscoverRange": 3.45,
     "Priority": "Health",
     "TargetMode": "Switch",
@@ -221,7 +221,7 @@
     "BlockStatusCheck": true,
     "SwitchStopBlock": true,
     "BlockRate": 100,
-    "BlockRange": 3.45,
+    "BlockRange": 3.36,
     "RayCast": true,
     "RayCastIgnored": false,
     "LivingRayCast": true,
@@ -662,7 +662,7 @@
     "Notification": true
   },
   "KillMessage": {
-    "State": true,
+    "State": false,
     "KeyBind": 0,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -1215,7 +1215,7 @@
     "OnlyBlockInHand": false
   },
   "Speed": {
-    "State": false,
+    "State": true,
     "KeyBind": 47,
     "Hide": false,
     "AutoDisable": "Disable",
