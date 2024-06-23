@@ -35,11 +35,7 @@ import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.item.EntityArmorStand
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.init.Items
-import net.minecraft.item.ItemFood
-import net.minecraft.item.ItemPickaxe
-import net.minecraft.item.ItemPotion
-import net.minecraft.item.ItemSpade
-import net.minecraft.item.ItemSword
+import net.minecraft.item.*
 import net.minecraft.network.PacketBuffer
 import net.minecraft.network.play.client.*
 import net.minecraft.potion.Potion
@@ -96,6 +92,7 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
         }
     }
     private val rangeSprintReducementValue = FloatValue("RangeSprintReducement", 0f, 0f, 0.4f)
+    private val rangemoveReducementValue = FloatValue("RangeMoveReducement", 0f, 0f, 0.4f)
     private val discoverRangeValue: FloatValue = object : FloatValue("DiscoverRange", 4.0f, 2.0f, 10f) {
         override fun onChanged(oldValue: Float, newValue: Float) {
             val i = rangeValue.get()
@@ -113,6 +110,7 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
     private val scaffoldCheck = BooleanValue("ScaffoldCheck", true)
 
     //Timing
+    private val armorbreaker = BooleanValue("ArmorBreaker", false)
     private val highVersionAttackDelay = BooleanValue("HighVersionAttackDelay", false)
     private val highVersionAttackSwing = BooleanValue("HighVersionAttackSwing", false)
     private val attackTimingValue = ListValue("AttackTiming", arrayOf("Legit", "Pre", "Post"), "Legit")
@@ -230,7 +228,8 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
     /**
      * MODULE
      */
-
+    //armorbreaker
+    private var switching = false
     // Target
     var sTarget: Entity? = null
     var target: Entity? = null
@@ -415,6 +414,43 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
 
     // MOVED: PacketEvent & TickEvent -> utils.RotationUtils
 
+    /**
+     * Update event
+     */
+    @EventTarget
+    fun onAttack(event: AttackEvent) {
+        if (armorbreaker.get()){
+            if (switching) return
+            if (mc.thePlayer.heldItem == null) return
+
+            if (mc.thePlayer.heldItem.item is ItemSword) {
+
+                var firstSwordIndex = -1
+                var secondSwordIndex = -1
+                for (i in 0..8) {
+                    val stack: ItemStack = mc.thePlayer.inventory.getStackInSlot(i) ?: continue
+
+                    val item = stack.item
+                    if (item is ItemSword) {
+                        if (firstSwordIndex == -1) {
+                            firstSwordIndex = i
+                        } else {
+                            secondSwordIndex = i
+                            break
+                        }
+                    }
+                }
+                if (firstSwordIndex == -1 || secondSwordIndex == -1) return
+                switching = true
+
+                mc.playerController.windowClick(mc.thePlayer.inventoryContainer.windowId,firstSwordIndex + 36,0,2,mc.thePlayer)
+                mc.playerController.windowClick(mc.thePlayer.inventoryContainer.windowId,secondSwordIndex + 36 ,0,2,mc.thePlayer)
+                mc.playerController.windowClick(mc.thePlayer.inventoryContainer.windowId,firstSwordIndex + 36,0,2,mc.thePlayer)
+                mc.playerController.updateController()
+                switching = false
+            }
+        }
+    }
     /**
      * Update event
      */
@@ -1115,7 +1151,7 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
         get() = rangeValue.get()
 
     private fun getRange(entity: Entity) =
-        (if (mc.thePlayer!!.getDistanceToEntityBox(entity) >= throughWallsRangeValue.get()) rangeValue.get() else throughWallsRangeValue.get()) - if (mc.thePlayer!!.isSprinting) rangeSprintReducementValue.get() else 0F
+        (if (mc.thePlayer!!.getDistanceToEntityBox(entity) >= throughWallsRangeValue.get()) rangeValue.get() else throughWallsRangeValue.get()) - if (mc.thePlayer!!.isSprinting) rangeSprintReducementValue.get() else 0F - if (MovementUtils.isMoving) rangemoveReducementValue.get() else 0F
 
     /**
      * HUD Tag

@@ -18,7 +18,7 @@ import net.minecraft.util.EnumFacing
 
 
 class NoBlockSlow : Module("NoBlockSlow",description = "", category = ModuleCategory.MOVEMENT) {
-    private val tickPacket = IntegerValue("tickDestory", 3, 1, 10)
+    private val tickPacket = IntegerValue("tickDestory", 8, 1, 10)
     private var needcancel: MutableMap<BlockPos, Block> = mutableMapOf()
     private var tick = 0
     @EventTarget
@@ -27,8 +27,8 @@ class NoBlockSlow : Module("NoBlockSlow",description = "", category = ModuleCate
         if (thePlayer == null || thePlayer.isSneaking  || thePlayer.isSpectator) return
         if (event.eventState == EventState.PRE) {
             tick++
-            if (tick == 22) {
-                needcancel = BlockUtils.searchBlocks(10).toMutableMap()
+            if (tick == 8) {
+                needcancel = BlockUtils.searchBlocks(11).toMutableMap()
                 tick = 0
             }
         }
