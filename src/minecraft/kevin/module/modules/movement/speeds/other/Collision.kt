@@ -16,6 +16,7 @@ package kevin.module.modules.movement.speeds.other
 
 import kevin.event.UpdateEvent
 import kevin.module.FloatValue
+import kevin.module.ListValue
 import kevin.module.modules.movement.speeds.SpeedMode
 import kevin.module.modules.movement.speeds.other.Collision.rangeValue
 import kevin.utils.EntityUtils
@@ -27,8 +28,10 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 object Collision : SpeedMode("Collision") {
-    private val rangeValue = FloatValue("CustomRange", 1.5f, 0f, 2f)
-    private val speedValue = FloatValue("Speed", 0.8f, 0f, 1f)
+    private val mode by ListValue("Mode", arrayOf("EntityBHop","EntityBoost"),"EntityBoost")
+    private val rangeValue by FloatValue("CustomRange", 1.5f, 0f, 2f)
+    private val speedValue by FloatValue("Speed", 0.8f, 0f, 1f)
+
     override fun onUpdate(event: UpdateEvent) {
         if (mc.thePlayer == null) return
 
@@ -39,11 +42,18 @@ object Collision : SpeedMode("Collision") {
         if (getNearestEntityInRange() != null) {
             ticks++
         }
-
-        val yaw = Math.toRadians(mc.thePlayer.rotationYaw.toDouble())
-        val boost = 0.1 * speedValue.get() * ticks
-        mc.thePlayer.addVelocity(-sin(yaw) * boost, 0.0, cos(yaw) * boost)
-
+        when(mode) {
+            "EntityBoost" -> {
+                val yaw = Math.toRadians(mc.thePlayer.rotationYaw.toDouble())
+                val boost = 0.1 * speedValue * ticks
+                mc.thePlayer.addVelocity(-sin(yaw) * boost, 0.0, cos(yaw) * boost)
+            }
+            "EntityBHop" -> {
+                if (getNearestEntityInRange() != null) {
+                    mc.thePlayer.jumpMovementFactor = (0.1 * speedValue * ticks).toFloat()
+                }
+            }
+        }
     }
 
     private fun getAllEntities(): List<Entity> {
@@ -55,7 +65,7 @@ object Collision : SpeedMode("Collision") {
     private fun getNearestEntityInRange(): Entity? {
         val entitiesInRange = getAllEntities().filter {
             val distance = mc.thePlayer.getDistanceToEntityBox2(it)
-            (distance <= rangeValue.get())
+            (distance <= rangeValue)
         }
         return entitiesInRange.minBy { mc.thePlayer.getDistanceToEntityBox2(it) }
     }

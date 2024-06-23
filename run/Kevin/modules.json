@@ -992,7 +992,8 @@
     "State": true,
     "KeyBind": 0,
     "Hide": false,
-    "AutoDisable": "Disable"
+    "AutoDisable": "Disable",
+    "tickDestory": 3
   },
   "FastLadder": {
     "State": true,
@@ -1389,7 +1390,7 @@
     "AutoDisable": "Disable",
     "Pulse": false,
     "PulseDelay": 1000,
-    "PingMode": "Storage",
+    "PingMode": "None",
     "InvalidTransaction": true,
     "ColorRainbow": true,
     "R": 255,

@@ -16,16 +16,6 @@
     "ArmorDamageRainbowY": -1000.0
   },
   {
-    "Type": "TargetHUD",
-    "X": 519.0,
-    "Y": 284.0,
-    "Scale": 0.7999999,
-    "HorizontalFacing": "Left",
-    "VerticalFacing": "Up",
-    "FadeSpeed": 2.0,
-    "Mode": "AnotherLiquid"
-  },
-  {
     "Type": "Text",
     "X": 2.0,
     "Y": 11.0,
@@ -175,5 +165,15 @@
     "ClientFont": false,
     "Shadow": false,
     "ClientName": true
+  },
+  {
+    "Type": "TargetHUD",
+    "X": 468.0,
+    "Y": 274.0,
+    "Scale": 0.8499999,
+    "HorizontalFacing": "Left",
+    "VerticalFacing": "Up",
+    "FadeSpeed": 2.0,
+    "Mode": "AnotherLiquid"
   }
 ]

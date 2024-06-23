@@ -15,6 +15,8 @@
 package kevin.utils
 
 import net.minecraft.block.Block
+import net.minecraft.block.BlockLiquid
+import net.minecraft.block.BlockWeb
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.IBlockState
 import net.minecraft.util.AxisAlignedBB
@@ -62,6 +64,7 @@ object BlockUtils : MinecraftInstance() {
     @JvmStatic
     fun getCenterDistance(blockPos: BlockPos) =
         mc.thePlayer!!.getDistance(blockPos.x + 0.5, blockPos.y + 0.5, blockPos.z + 0.5)
+
 
     @JvmStatic
     fun searchBlocks(radius: Int): Map<BlockPos, Block> {
