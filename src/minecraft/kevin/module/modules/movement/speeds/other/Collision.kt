@@ -22,13 +22,14 @@ import kevin.module.modules.movement.speeds.other.Collision.rangeValue
 import kevin.utils.EntityUtils
 import kevin.utils.MinecraftInstance.mc
 import kevin.utils.MovementUtils
+import kevin.utils.connection.getDistanceToEntityBox
 import kevin.utils.connection.getDistanceToEntityBox2
 import net.minecraft.entity.Entity
 import kotlin.math.cos
 import kotlin.math.sin
 
 object Collision : SpeedMode("Collision") {
-    private val mode by ListValue("Mode", arrayOf("EntityBHop","EntityBoost"),"EntityBoost")
+    private val mode by ListValue("Mode", arrayOf("EntityBHop","EntityBoost","Mix"),"EntityBoost")
     private val rangeValue by FloatValue("CustomRange", 1.5f, 0f, 2f)
     private val speedValue by FloatValue("Speed", 0.8f, 0f, 1f)
 
@@ -53,6 +54,17 @@ object Collision : SpeedMode("Collision") {
                     mc.thePlayer.jumpMovementFactor = (0.1 * speedValue * ticks).toFloat()
                 }
             }
+            "Mix" -> {
+                if (getNearestEntityInRange() != null) {
+                    if (mc.thePlayer.onGround){
+                        val yaw = Math.toRadians(mc.thePlayer.rotationYaw.toDouble())
+                        val boost = 0.1 * speedValue * ticks
+                        mc.thePlayer.addVelocity(-sin(yaw) * boost, 0.0, cos(yaw) * boost)
+                    }else {
+                        mc.thePlayer.jumpMovementFactor = (0.1 * speedValue * ticks).toFloat()
+                    }
+                }
+            }
         }
     }
 
@@ -64,9 +76,10 @@ object Collision : SpeedMode("Collision") {
 
     private fun getNearestEntityInRange(): Entity? {
         val entitiesInRange = getAllEntities().filter {
-            val distance = mc.thePlayer.getDistanceToEntityBox2(it)
-            (distance <= rangeValue)
+            (mc.thePlayer.getDistanceToEntityBox(it) <= rangeValue)
         }
-        return entitiesInRange.minBy { mc.thePlayer.getDistanceToEntityBox2(it) }
+        return entitiesInRange.minByOrNull {
+            mc.thePlayer.getDistanceToEntityBox(it)
+        }
     }
 }

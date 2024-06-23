@@ -35,7 +35,9 @@ import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.item.EntityArmorStand
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.init.Items
+import net.minecraft.item.ItemFood
 import net.minecraft.item.ItemPickaxe
+import net.minecraft.item.ItemPotion
 import net.minecraft.item.ItemSpade
 import net.minecraft.item.ItemSword
 import net.minecraft.network.PacketBuffer
@@ -168,12 +170,20 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
             val v = pitchMaxTurnSpeed.get()
             if (v < newValue) set(v)
         }
-    }
+}
 
     private val rotationModeValue = ListValue("RotationMode", arrayOf("LiquidBounce", "Advanced", "LiquidSense", "NearestPoint"), "LiquidBounce")
     private val silentRotationValue = ListValue("SilentRotation", arrayOf("Always", "OnlyNoMove", "Off"), "Always")
     private val rotationStrafeValue = ListValue("Strafe", arrayOf("Off", "Vanilla", "Strict", "Silent"), "Off")
     private val randomCenterValue = BooleanValue("RandomCenter", true)
+    private val prhValue = BooleanValue("PitchRangeHelper", false)
+    private val MaxPitchRange: FloatValue = object : FloatValue("MaxPitchRange", rangeValue.get(), 0f, 8f) {
+        override fun onChanged(oldValue: Float, newValue: Float) {
+            val i = discoverRangeValue.get()
+            if (i < newValue) set(i)
+        }
+        override fun isSupported(): Boolean = prhValue.get()
+    }
     private val outborderValue = BooleanValue("Outborder", false)
     private val fovValue = FloatValue("FOV", 180f, 0f, 180f)
     private val onlyRotationInAttack = BooleanValue("OnlyRotationInAttack", false)
@@ -203,6 +213,7 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
     private val alwaysHitable = BooleanValue("AlwaysHitable", false)
     private val failRateValue = FloatValue("FailRate", 0f, 0f, 100f)
     private val fakeSwingValue = BooleanValue("FakeSwing", true)
+    private val noEatAttackValue = BooleanValue("NoEatAttack", false)
     private val noInventoryAttackValue = BooleanValue("NoInvAttack", false)
     private val noInventoryDelayValue = IntegerValue("NoInvDelay", 200, 0, 500) { noInventoryAttackValue.get() }
     private val limitedMultiTargetsValue = IntegerValue("LimitedMultiTargets", 0, 0, 50) { targetModeValue equal "Multi" }
@@ -720,9 +731,8 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
                 for (entity in theWorld.loadedEntityList) {
                     val distance = thePlayer.getDistanceToEntityBox(entity)
 
-                    if ((entity is EntityLivingBase || HideAndSeekHack.isHider(entity)) && isEnemy(entity) && distance <= getRange(entity)) {
+                    if ((entity is EntityLivingBase || HideAndSeekHack.isHider(entity)) && isEnemy(entity) && (distance <= if (prhValue.get()) getRange(entity) else Math.sqrt(Math.pow((rangeValue.get() * Math.cos(RotationUtils.getRotationDifferencePitch(entity).toRadians())), 2.0) + Math.pow((MaxPitchRange.get() * Math.sin(RotationUtils.getRotationDifferencePitch(entity).toRadians())),2.0)).toFloat())) {
                         attackEntity(entity)
-
                         targets += 1
 
                         if (limitedMultiTargetsValue.get() != 0 && limitedMultiTargetsValue.get() <= targets)
@@ -1086,7 +1096,7 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
                 || (KevinClient.moduleManager.getModule(TP::class.java).state&&(KevinClient.moduleManager.getModule(TP::class.java)).mode.get().equals("AAC",true))
                 || (KevinClient.moduleManager.getModule(Fly::class.java).state&&(KevinClient.moduleManager.getModule(Fly::class.java)).mode.get().equals("Vulcan",true))
                 || (scaffoldCheck.get()&&KevinClient.moduleManager.getModule(Scaffold::class.java).state)
-
+                || (noEatAttackValue.get() && (mc.thePlayer.isUsingItem && (mc.thePlayer!!.heldItem?.item is ItemPotion || mc.thePlayer!!.heldItem?.item is ItemFood)))
     /**
      * Check if [entity] is alive
      */

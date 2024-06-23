@@ -25,6 +25,7 @@ fun Entity.getDistanceToEntityBox(entity: Entity): Double {
     return sqrt(xDist.pow(2) + yDist.pow(2) + zDist.pow(2))
 }
 
+
 val Entity.eyes: Vec3
     get() = getPositionEyes(1f)
 

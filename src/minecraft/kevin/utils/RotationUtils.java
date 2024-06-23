@@ -377,7 +377,11 @@ public final class RotationUtils extends MinecraftInstance implements Listenable
 
         return getRotationDifference(rotation, new Rotation(mc.thePlayer.rotationYaw, mc.thePlayer.rotationPitch));
     }
+    public static double getRotationDifferencePitch(final Entity entity) {
+        final Rotation rotation = toRotation(getCenter(entity.getEntityBoundingBox()), true);
 
+        return Math.abs(getRotationDifferencePitch(rotation, new Rotation(mc.thePlayer.rotationYaw, mc.thePlayer.rotationPitch)));
+    }
     /**
      * Calculate difference between the server rotation and your rotation
      *
@@ -397,6 +401,10 @@ public final class RotationUtils extends MinecraftInstance implements Listenable
      */
     public static double getRotationDifference(final Rotation a, final Rotation b) {
         return Math.hypot(getAngleDifference(a.getYaw(), b.getYaw()), a.getPitch() - b.getPitch());
+    }
+
+    public static double getRotationDifferencePitch(final Rotation a, final Rotation b) {
+        return getAngleDifference(a.getPitch(), b.getPitch());
     }
 
     public static boolean compareRotationDifferenceLesser(Rotation compareWith, Rotation toCompare1, Rotation toCompare2) {

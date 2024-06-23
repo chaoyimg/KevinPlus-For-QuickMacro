@@ -25,14 +25,11 @@ import net.minecraft.block.*
 import net.minecraft.client.gui.ScaledResolution
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.settings.GameSettings
+import net.minecraft.entity.Entity
 import net.minecraft.init.Blocks
 import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemStack
-import net.minecraft.network.play.client.C03PacketPlayer
-import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement
-import net.minecraft.network.play.client.C09PacketHeldItemChange
-import net.minecraft.network.play.client.C0APacketAnimation
-import net.minecraft.network.play.client.C0BPacketEntityAction
+import net.minecraft.network.play.client.*
 import net.minecraft.stats.StatList
 import net.minecraft.util.*
 import net.minecraft.util.MathHelper.wrapAngleTo180_double
@@ -230,6 +227,7 @@ class Scaffold : Module("Scaffold", "Automatically places blocks beneath your fe
     // Visuals
     private val counterDisplayValue = BooleanValue("Counter", true)
     private val markValue = BooleanValue("Mark", false)
+    private val visvalValue = BooleanValue("Visval", false)
 
 // Variables
 
@@ -1199,6 +1197,10 @@ class Scaffold : Module("Scaffold", "Automatically places blocks beneath your fe
     /** @param  */
     @EventTarget
     fun onRender3D(event: Render3DEvent) {
+        if (visvalValue.get()){
+            esp(mc.thePlayer, event.partialTicks, 0.5)
+            esp(mc.thePlayer, event.partialTicks, 0.4)
+        }
         if (!markValue.get()) return
         if (!shouldExpand || expandMode equal "LiquidBounce") {
             for (i in 0 until if (shouldExpand) expandLengthValue.get() + 1 else 2) {
@@ -1527,6 +1529,71 @@ class Scaffold : Module("Scaffold", "Automatically places blocks beneath your fe
             }
             return amount
         }
+
+    fun esp(entity: Entity, partialTicks: Float, rad: Double) {
+        val points = 90f
+        GlStateManager.enableDepth()
+        var il = 0.0
+        while (il < 4.9E-324) {
+            GL11.glPushMatrix()
+            GL11.glDisable(3553)
+            GL11.glEnable(2848)
+            GL11.glEnable(2881)
+            GL11.glEnable(2832)
+            GL11.glEnable(3042)
+            GL11.glBlendFunc(770, 771)
+            GL11.glHint(3154, 4354)
+            GL11.glHint(3155, 4354)
+            GL11.glHint(3153, 4354)
+            GL11.glDisable(2929)
+            GL11.glLineWidth(3.5f)
+            GL11.glBegin(3)
+            val x =
+                entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks - mc.renderManager.viewerPosX
+            val y =
+                entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks - mc.renderManager.viewerPosY
+            val z =
+                entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks - mc.renderManager.viewerPosZ
+            val speed = 5000f
+            var baseHue = (System.currentTimeMillis() % speed.toInt()).toFloat()
+            baseHue /= speed
+            for (i in 0..90) {
+                val max = (i.toFloat() + (il * 8).toFloat()) / points
+                var hue = max + baseHue
+                while (hue > 1) {
+                    hue -= 1f
+                }
+                val pix2 = Math.PI * 2.0
+                for (i2 in 0..6) {
+                    if (mc.thePlayer.onGround) GlStateManager.color(255f, 255f, 255f, 1f) else GlStateManager.color(
+                        255f,
+                        255f,
+                        255f,
+                        0.4f
+                    )
+                    GL11.glVertex3d(x + rad * Math.cos(i2 * pix2 / 6.0), y, z + rad * Math.sin(i2 * pix2 / 6.0))
+                }
+                for (i2 in 0..6) {
+                    if (!mc.thePlayer.onGround) GlStateManager.color(0f, 0f, 0f, 1f) else GlStateManager.color(0f, 0f, 0f, 0.4f)
+                    GL11.glVertex3d(
+                        x + rad * Math.cos(i2 * pix2 / 6.0) * 1.01,
+                        y,
+                        z + rad * Math.sin(i2 * pix2 / 6.0) * 1.01
+                    )
+                }
+            }
+            GL11.glEnd()
+            GL11.glDepthMask(true)
+            GL11.glEnable(2929)
+            GL11.glDisable(2848)
+            GL11.glDisable(2881)
+            GL11.glEnable(2832)
+            GL11.glEnable(3553)
+            GL11.glPopMatrix()
+            GlStateManager.color(255f, 255f, 255f)
+            il += 4.9E-324
+        }
+    }
     override val tag: String
         get() = if (!(towerModeValue equal "Jump")&&mc.gameSettings.keyBindJump.isKeyDown) "Tower" else if (mc.gameSettings.keyBindJump.isKeyDown) "JumpUp" else if (shouldGoDown) "Down" else if (shouldExpand) "Expand" else "Normal"
 }
