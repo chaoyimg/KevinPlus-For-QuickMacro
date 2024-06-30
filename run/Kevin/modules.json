@@ -551,7 +551,7 @@
     "NoNotFindNotification": true
   },
   "AntiBot": {
-    "State": false,
+    "State": true,
     "KeyBind": 23,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -996,7 +996,7 @@
     "API": "Google"
   },
   "NoBlockSlow": {
-    "State": true,
+    "State": false,
     "KeyBind": 45,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -1485,11 +1485,11 @@
     "PotionEffect": false
   },
   "Animations": {
-    "State": false,
+    "State": true,
     "KeyBind": 1,
     "Hide": false,
     "AutoDisable": "Disable",
-    "Preset": "Rotate",
+    "Preset": "Jello",
     "TranslateX": 0.0,
     "TranslateY": 0.0,
     "TranslateZ": 0.0,

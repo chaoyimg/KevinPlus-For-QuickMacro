@@ -275,7 +275,27 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
     override fun onEnable() {
         mc.thePlayer ?: return
         mc.theWorld ?: return
-
+        if (armorbreaker.get()) {
+             findNeedSword()
+                if (firstSwordIndex != -1 && secondSwordIndex != -1 && firstSwordIndex != null && secondSwordIndex != null && !ItemUtils.isStackEmpty(
+                        mc.thePlayer?.inventoryContainer?.getSlot(firstSwordIndex)?.stack
+                    ) && !ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(secondSwordIndex)?.stack)
+                ) {
+                    if (mc.thePlayer.heldItem.item is ItemSword) {
+                        switching = true
+                        if (mc.thePlayer!!.inventory.currentItem == 0) {
+                            if (secondSwordIndex != 36) {
+                                switchslot(0,secondSwordIndex)
+                            }
+                        } else {
+                            if ((mc.thePlayer.inventory.currentItem + 36) != secondSwordIndex) {
+                                switchslot(secondSwordIndex,mc.thePlayer!!.inventory.currentItem + 36)
+                            }
+                        }
+                        switching = false
+                    }
+                }
+        }
         updateTarget()
     }
 
@@ -431,30 +451,20 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
             if (mc.thePlayer.heldItem == null) return
             if (mc.thePlayer.heldItem.item is ItemSword) {
                 if (firstSwordIndex == -1 || secondSwordIndex == -1 || firstSwordIndex == null || secondSwordIndex == null || ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(firstSwordIndex)?.stack) ||  ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(secondSwordIndex)?.stack)) return
-                print(firstSwordIndex)
-                print(secondSwordIndex)
                 switching = true
                 if (mc.thePlayer!!.inventory.currentItem == 0){
                     if (firstSwordIndex == 36) {
-                        mc.playerController.windowClick(0,36, 0, 2, mc.thePlayer)
-                        mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
-                        mc.playerController.windowClick(0, 36, 0, 2, mc.thePlayer)
+                        switchslot(36,secondSwordIndex)
                     }
                     if (secondSwordIndex == 36) {
-                        mc.playerController.windowClick(0, 36, 0, 2, mc.thePlayer)
-                        mc.playerController.windowClick(0, firstSwordIndex, 0, 2, mc.thePlayer)
-                        mc.playerController.windowClick(0, 36, 0, 2, mc.thePlayer)
+                        switchslot(36,firstSwordIndex)
                     }
                 }else {
                     if ((mc.thePlayer.inventory.currentItem + 36) == firstSwordIndex) {
-                        mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
-                        mc.playerController.windowClick(0, firstSwordIndex, 0, 2, mc.thePlayer)
-                        mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
+                        switchslot(secondSwordIndex,firstSwordIndex)
                     }
                     if ((mc.thePlayer.inventory.currentItem + 36) == secondSwordIndex) {
-                        mc.playerController.windowClick(0, firstSwordIndex, 0, 2, mc.thePlayer)
-                        mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
-                        mc.playerController.windowClick(0, firstSwordIndex, 0, 2, mc.thePlayer)
+                        switchslot(firstSwordIndex,secondSwordIndex)
                     }
                 }
                 switching = false
@@ -481,23 +491,7 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
         updateTarget()
         if (armorbreaker.get()) {
             if (!switching) {
-                val items = items(0, 45)
-                    .filter {
-                        it.value.item is ItemSword
-                    }.toMutableMap()
-                firstSwordIndex = items.maxByOrNull {
-                    it.value.attributeModifiers["generic.attackDamage"].first().amount + 1.25 * ItemUtils.getEnchantment(
-                        it.value,
-                        Enchantment.sharpness
-                    )
-                }!!.key
-                items.remove(firstSwordIndex)
-                secondSwordIndex = items.maxByOrNull {
-                    it.value.attributeModifiers["generic.attackDamage"].first().amount + 1.25 * ItemUtils.getEnchantment(
-                        it.value,
-                        Enchantment.sharpness
-                    )
-                }!!.key
+              findNeedSword()
             }
             if (target == null || currentTarget == null) {
                 if (firstSwordIndex != -1 && secondSwordIndex != -1 && firstSwordIndex != null && secondSwordIndex != null && !ItemUtils.isStackEmpty(
@@ -508,21 +502,11 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
                         switching = true
                         if (mc.thePlayer!!.inventory.currentItem == 0) {
                             if (secondSwordIndex != 36) {
-                                mc.playerController.windowClick(0, 0, 0, 2, mc.thePlayer)
-                                mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
-                                mc.playerController.windowClick(0, 0, 0, 2, mc.thePlayer)
+                                switchslot(0,secondSwordIndex)
                             }
                         } else {
                             if ((mc.thePlayer.inventory.currentItem + 36) != secondSwordIndex) {
-                                mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
-                                mc.playerController.windowClick(
-                                    0,
-                                    mc.thePlayer!!.inventory.currentItem + 36,
-                                    0,
-                                    2,
-                                    mc.thePlayer
-                                )
-                                mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
+                                switchslot(secondSwordIndex,mc.thePlayer!!.inventory.currentItem + 36)
                             }
                         }
                         switching = false
@@ -1226,6 +1210,38 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
         }
 
         return items
+    }
+
+    private fun switchslot(startslot: Int, endslot: Int) {
+        mc.playerController.windowClick(0, startslot, 0, 2, mc.thePlayer)
+        mc.playerController.windowClick(0, endslot, 0, 2, mc.thePlayer)
+        mc.playerController.windowClick(0, startslot, 0, 2, mc.thePlayer)
+    }
+
+    private fun findNeedSword() {
+        val items = items(9, 45)
+            .filter {
+                it.value.item is ItemSword
+            }.toMutableMap()
+        firstSwordIndex = items.maxByOrNull {
+            it.value.attributeModifiers["generic.attackDamage"].first().amount + 1.25 * ItemUtils.getEnchantment(
+                it.value,
+                Enchantment.sharpness
+            )
+        }!!.key
+
+        secondSwordIndex = items.filter {    it.value.attributeModifiers["generic.attackDamage"].first().amount + 1.25 * ItemUtils.getEnchantment(
+            it.value,
+            Enchantment.sharpness
+        )!=    mc.thePlayer?.inventoryContainer?.getSlot(firstSwordIndex)!!.stack.attributeModifiers["generic.attackDamage"].first().amount + 1.25 * ItemUtils.getEnchantment(
+            mc.thePlayer?.inventoryContainer?.getSlot(firstSwordIndex)?.stack,
+            Enchantment.sharpness
+        ) }.maxByOrNull {
+            it.value.attributeModifiers["generic.attackDamage"].first().amount + 1.25 * ItemUtils.getEnchantment(
+                it.value,
+                Enchantment.sharpness
+            )
+        }!!.key
     }
     /**
      * HUD Tag
