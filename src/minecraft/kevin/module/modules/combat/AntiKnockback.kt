@@ -419,16 +419,19 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
                 "attackmix" -> {
                     velocityInput = true
                         val currentRotation = RotationUtils.serverRotation!!
-                        val target = RaycastUtils.raycastEntityYaw(
-                            clickRange.get().toDouble(),
-                            currentRotation.yaw,
-                            currentRotation.pitch,
-                            object : RaycastUtils.EntityFilter {
-                                override fun canRaycast(entity: Entity?): Boolean {
-                                    return true  }
-                            }
-                        )
-                        if (target != null && target != mc.thePlayer) {
+
+                        val target = if ((KevinClient.moduleManager.getModule(KillAura::class.java)).state) {((KevinClient.moduleManager.getModule(KillAura::class.java)).target )}
+                         else{
+                            RaycastUtils.raycastEntityYaw(
+                                clickRange.get().toDouble(),
+                                currentRotation.yaw,
+                                currentRotation.pitch,
+                                object : RaycastUtils.EntityFilter {
+                                    override fun canRaycast(entity: Entity?): Boolean {
+                                        return true  }
+                                })
+                        }
+                    if (target != null && target != mc.thePlayer) {
                             for (i in 0 until clickCount.get()) {
                                 if (mc.thePlayer.serverSprintState && MovementUtils.isMoving) {
                                     mc.netHandler.addToSendQueue(C02PacketUseEntity(target, C02PacketUseEntity.Action.ATTACK))

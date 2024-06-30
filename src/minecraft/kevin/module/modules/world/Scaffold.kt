@@ -1565,7 +1565,7 @@ class Scaffold : Module("Scaffold", "Automatically places blocks beneath your fe
                 }
                 val pix2 = Math.PI * 2.0
                 for (i2 in 0..6) {
-                    if (mc.thePlayer.onGround) GlStateManager.color(255f, 255f, 255f, 1f) else GlStateManager.color(
+                    if (!mc.thePlayer.onGround) GlStateManager.color(255f, 255f, 255f, 1f) else GlStateManager.color(
                         255f,
                         255f,
                         255f,
@@ -1574,7 +1574,7 @@ class Scaffold : Module("Scaffold", "Automatically places blocks beneath your fe
                     GL11.glVertex3d(x + rad * Math.cos(i2 * pix2 / 6.0), y, z + rad * Math.sin(i2 * pix2 / 6.0))
                 }
                 for (i2 in 0..6) {
-                    if (!mc.thePlayer.onGround) GlStateManager.color(0f, 0f, 0f, 1f) else GlStateManager.color(0f, 0f, 0f, 0.4f)
+                    if (mc.thePlayer.onGround) GlStateManager.color(0f, 0f, 0f, 1f) else GlStateManager.color(0f, 0f, 0f, 0.4f)
                     GL11.glVertex3d(
                         x + rad * Math.cos(i2 * pix2 / 6.0) * 1.01,
                         y,

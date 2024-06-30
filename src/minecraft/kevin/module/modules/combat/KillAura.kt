@@ -29,6 +29,8 @@ import kevin.module.modules.render.FreeCam
 import kevin.module.modules.world.Scaffold
 import kevin.utils.*
 import net.minecraft.client.gui.inventory.GuiContainer
+import net.minecraft.client.gui.inventory.GuiInventory
+import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityLivingBase
@@ -111,6 +113,9 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
 
     //Timing
     private val armorbreaker = BooleanValue("ArmorBreaker", false)
+    private val maxbreakerhurtTimeValue = IntegerValue("MaxBreakerHurtTime", 8, 0, 10) {armorbreaker.get()}
+    private val minbreakerhurtTimeValue = IntegerValue("MinBreakerHurtTime", 1, 0, 10) {armorbreaker.get()}
+
     private val highVersionAttackDelay = BooleanValue("HighVersionAttackDelay", false)
     private val highVersionAttackSwing = BooleanValue("HighVersionAttackSwing", false)
     private val attackTimingValue = ListValue("AttackTiming", arrayOf("Legit", "Pre", "Post"), "Legit")
@@ -230,6 +235,8 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
      */
     //armorbreaker
     private var switching = false
+    private var firstSwordIndex = -1
+    private var secondSwordIndex = -1
     // Target
     var sTarget: Entity? = null
     var target: Entity? = null
@@ -419,34 +426,37 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
      */
     @EventTarget
     fun onAttack(event: AttackEvent) {
-        if (armorbreaker.get()){
+        if (armorbreaker.get()) {
             if (switching) return
             if (mc.thePlayer.heldItem == null) return
-
             if (mc.thePlayer.heldItem.item is ItemSword) {
-
-                var firstSwordIndex = -1
-                var secondSwordIndex = -1
-                for (i in 0..8) {
-                    val stack: ItemStack = mc.thePlayer.inventory.getStackInSlot(i) ?: continue
-
-                    val item = stack.item
-                    if (item is ItemSword) {
-                        if (firstSwordIndex == -1) {
-                            firstSwordIndex = i
-                        } else {
-                            secondSwordIndex = i
-                            break
-                        }
+                if (firstSwordIndex == -1 || secondSwordIndex == -1 || firstSwordIndex == null || secondSwordIndex == null || ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(firstSwordIndex)?.stack) ||  ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(secondSwordIndex)?.stack)) return
+                print(firstSwordIndex)
+                print(secondSwordIndex)
+                switching = true
+                if (mc.thePlayer!!.inventory.currentItem == 0){
+                    if (firstSwordIndex == 36) {
+                        mc.playerController.windowClick(0,36, 0, 2, mc.thePlayer)
+                        mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
+                        mc.playerController.windowClick(0, 36, 0, 2, mc.thePlayer)
+                    }
+                    if (secondSwordIndex == 36) {
+                        mc.playerController.windowClick(0, 36, 0, 2, mc.thePlayer)
+                        mc.playerController.windowClick(0, firstSwordIndex, 0, 2, mc.thePlayer)
+                        mc.playerController.windowClick(0, 36, 0, 2, mc.thePlayer)
+                    }
+                }else {
+                    if ((mc.thePlayer.inventory.currentItem + 36) == firstSwordIndex) {
+                        mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
+                        mc.playerController.windowClick(0, firstSwordIndex, 0, 2, mc.thePlayer)
+                        mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
+                    }
+                    if ((mc.thePlayer.inventory.currentItem + 36) == secondSwordIndex) {
+                        mc.playerController.windowClick(0, firstSwordIndex, 0, 2, mc.thePlayer)
+                        mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
+                        mc.playerController.windowClick(0, firstSwordIndex, 0, 2, mc.thePlayer)
                     }
                 }
-                if (firstSwordIndex == -1 || secondSwordIndex == -1) return
-                switching = true
-
-                mc.playerController.windowClick(mc.thePlayer.inventoryContainer.windowId,firstSwordIndex + 36,0,2,mc.thePlayer)
-                mc.playerController.windowClick(mc.thePlayer.inventoryContainer.windowId,secondSwordIndex + 36 ,0,2,mc.thePlayer)
-                mc.playerController.windowClick(mc.thePlayer.inventoryContainer.windowId,firstSwordIndex + 36,0,2,mc.thePlayer)
-                mc.playerController.updateController()
                 switching = false
             }
         }
@@ -469,7 +479,57 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
             return
         }
         updateTarget()
-
+        if (armorbreaker.get()) {
+            if (!switching) {
+                val items = items(0, 45)
+                    .filter {
+                        it.value.item is ItemSword
+                    }.toMutableMap()
+                firstSwordIndex = items.maxByOrNull {
+                    it.value.attributeModifiers["generic.attackDamage"].first().amount + 1.25 * ItemUtils.getEnchantment(
+                        it.value,
+                        Enchantment.sharpness
+                    )
+                }!!.key
+                items.remove(firstSwordIndex)
+                secondSwordIndex = items.maxByOrNull {
+                    it.value.attributeModifiers["generic.attackDamage"].first().amount + 1.25 * ItemUtils.getEnchantment(
+                        it.value,
+                        Enchantment.sharpness
+                    )
+                }!!.key
+            }
+            if (target == null || currentTarget == null) {
+                if (firstSwordIndex != -1 && secondSwordIndex != -1 && firstSwordIndex != null && secondSwordIndex != null && !ItemUtils.isStackEmpty(
+                        mc.thePlayer?.inventoryContainer?.getSlot(firstSwordIndex)?.stack
+                    ) && !ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(secondSwordIndex)?.stack)
+                ) {
+                    if (mc.thePlayer.heldItem.item is ItemSword) {
+                        switching = true
+                        if (mc.thePlayer!!.inventory.currentItem == 0) {
+                            if (secondSwordIndex != 36) {
+                                mc.playerController.windowClick(0, 0, 0, 2, mc.thePlayer)
+                                mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
+                                mc.playerController.windowClick(0, 0, 0, 2, mc.thePlayer)
+                            }
+                        } else {
+                            if ((mc.thePlayer.inventory.currentItem + 36) != secondSwordIndex) {
+                                mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
+                                mc.playerController.windowClick(
+                                    0,
+                                    mc.thePlayer!!.inventory.currentItem + 36,
+                                    0,
+                                    2,
+                                    mc.thePlayer
+                                )
+                                mc.playerController.windowClick(0, secondSwordIndex, 0, 2, mc.thePlayer)
+                            }
+                        }
+                        switching = false
+                    }
+                }
+            }
+        }
         if (noInventoryAttackValue.get() && ((mc.currentScreen)is GuiContainer ||
                     System.currentTimeMillis() - containerOpen < noInventoryDelayValue.get())) {
             target = null
@@ -1132,7 +1192,7 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
                 || (KevinClient.moduleManager.getModule(TP::class.java).state&&(KevinClient.moduleManager.getModule(TP::class.java)).mode.get().equals("AAC",true))
                 || (KevinClient.moduleManager.getModule(Fly::class.java).state&&(KevinClient.moduleManager.getModule(Fly::class.java)).mode.get().equals("Vulcan",true))
                 || (scaffoldCheck.get()&&KevinClient.moduleManager.getModule(Scaffold::class.java).state)
-                || (noEatAttackValue.get() && (mc.thePlayer.isUsingItem && (mc.thePlayer!!.heldItem?.item is ItemPotion || mc.thePlayer!!.heldItem?.item is ItemFood)))
+                || (noEatAttackValue.get() && (mc.thePlayer!!.heldItem?.item is ItemPotion || mc.thePlayer!!.heldItem?.item is ItemFood))
     /**
      * Check if [entity] is alive
      */
@@ -1151,8 +1211,22 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
         get() = rangeValue.get()
 
     private fun getRange(entity: Entity) =
-        (if (mc.thePlayer!!.getDistanceToEntityBox(entity) >= throughWallsRangeValue.get()) rangeValue.get() else throughWallsRangeValue.get()) - if (mc.thePlayer!!.isSprinting) rangeSprintReducementValue.get() else 0F - if (MovementUtils.isMoving) rangemoveReducementValue.get() else 0F
+        (if (mc.thePlayer!!.getDistanceToEntityBox(entity) >= throughWallsRangeValue.get()) rangeValue.get() else throughWallsRangeValue.get()) - if (MovementUtils.isMoving && mc.thePlayer!!.isSprinting) rangeSprintReducementValue.get() else 0F - if (MovementUtils.isMoving) rangemoveReducementValue.get() else 0F
 
+    private fun items(start: Int = 0, end: Int = 45): Map<Int, ItemStack> {
+        val items = mutableMapOf<Int, ItemStack>()
+
+        for (i in end - 1 downTo start) {
+            val itemStack = mc.thePlayer?.inventoryContainer?.getSlot(i)?.stack ?: continue
+
+            if (ItemUtils.isStackEmpty(itemStack))
+                continue
+
+                items[i] = itemStack
+        }
+
+        return items
+    }
     /**
      * HUD Tag
      */

@@ -1,20 +1,20 @@
 invertYMouse:false
 mouseSensitivity:0.5
 fov:0.375
-gamma:0.0
+gamma:0.33802816
 saturation:0.0
 renderDistance:8
 guiScale:0
 particles:2
-bobView:false
+bobView:true
 anaglyph3d:false
 maxFps:260
 fboEnable:true
 difficulty:1
 fancyGraphics:true
 ao:2
-renderClouds:true
-resourcePacks:["!   ��ceum3 Pink.zip"]
+renderClouds:false
+resourcePacks:["�����Լ���װ��pack������֡�ʡ�.zip"]
 incompatibleResourcePacks:[]
 lastServer:
 lang:ja_JP
@@ -38,7 +38,7 @@ chatHeightFocused:1.0
 chatHeightUnfocused:0.44366196
 chatScale:1.0
 chatWidth:1.0
-showInventoryAchievementHint:false
+showInventoryAchievementHint:true
 mipmapLevels:4
 streamBytesPerPixel:0.5
 streamMicVolume:1.0

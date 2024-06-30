@@ -1,13 +1,492 @@
-[00:02:20] [Client thread/INFO]: Setting user: Chaoying_L
-[00:02:20] [Client thread/INFO]: (Session ID is token:1e302fe1478c4611871febbb57f65ea3:61cb666dbb6c39568e159ddbc36cc3df)
-[00:02:21] [Client thread/INFO]: LWJGL Version: 2.9.4
-[00:02:22] [Client thread/INFO]: Reloading ResourceManager: Default, !   §ceum3 Pink.zip
-[00:02:22] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[00:02:22] [Thread-5/INFO]: Initializing LWJGL OpenAL
-[00:02:22] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[00:02:22] [Thread-5/INFO]: OpenAL initialized.
-[00:02:23] [Sound Library Loader/INFO]: Sound engine started
-[00:02:24] [Client thread/INFO]: Created: 2048x2048 textures-atlas
-[00:02:26] [Client thread/INFO]: Stopping!
-[00:02:26] [Client thread/INFO]: SoundSystem shutting down...
-[00:02:26] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[22:42:39] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[22:42:39] [main/INFO]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[22:42:39] [main/INFO]: Loading tweak class name optifine.OptiFineForgeTweaker
+[22:42:39] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[22:42:39] [main/INFO]: Forge Mod Loader version 11.15.1.2318 for Minecraft 1.8.9 loading
+[22:42:39] [main/INFO]: Java is Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_371, running on Windows 10:amd64:10.0, installed at C:\Program Files\Java\jre-1.8
+[22:42:39] [main/INFO]: Calling tweak class optifine.OptiFineForgeTweaker
+[22:42:39] [main/INFO]: [optifine.OptiFineForgeTweaker:dbg:56]: OptiFineForgeTweaker: acceptOptions
+[22:42:39] [main/INFO]: [optifine.OptiFineForgeTweaker:dbg:56]: OptiFineForgeTweaker: injectIntoClassLoader
+[22:42:39] [main/INFO]: [optifine.OptiFineClassTransformer:dbg:242]: OptiFine ClassTransformer
+[22:42:39] [main/INFO]: [optifine.OptiFineClassTransformer:dbg:242]: OptiFine ZIP file: F:\.myproject\doself\KevinClient-Reborn-master\run\libraries\optifine\OptiFine\1.8.9_HD_U_M5\OptiFine-1.8.9_HD_U_M5-installer.jar
+[22:42:39] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[22:42:39] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[22:42:39] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[22:42:39] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[22:42:39] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[22:42:41] [main/INFO]: Found valid fingerprint for Minecraft. Certificate fingerprint cd99959656f753dc28d863b46769f7f8fbaefcfc
+[22:42:41] [main/ERROR]: FML appears to be missing any signature data. This is not a good thing
+[22:42:41] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[22:42:41] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[22:42:41] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[22:42:41] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[22:42:41] [main/INFO]: [optifine.OptiFineForgeTweaker:dbg:56]: OptiFineForgeTweaker: getLaunchArguments
+[22:42:41] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[22:42:42] [Client thread/INFO]: Setting user: Chaoying_L
+[22:42:46] [Client thread/INFO]: [OptiFine] *** Reflector Forge ***
+[22:42:46] [Client thread/INFO]: [OptiFine] *** Reflector Vanilla ***
+[22:42:46] [Client thread/INFO]: LWJGL Version: 2.9.4
+[22:42:47] [Client thread/INFO]: [OptiFine] 
+[22:42:47] [Client thread/INFO]: [OptiFine] OptiFine_1.8.9_HD_U_M5
+[22:42:47] [Client thread/INFO]: [OptiFine] Build: 20210124-163719
+[22:42:47] [Client thread/INFO]: [OptiFine] OS: Windows 10 (amd64) version 10.0
+[22:42:47] [Client thread/INFO]: [OptiFine] Java: 1.8.0_371, Oracle Corporation
+[22:42:47] [Client thread/INFO]: [OptiFine] VM: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+[22:42:47] [Client thread/INFO]: [OptiFine] LWJGL: 2.9.4
+[22:42:47] [Client thread/INFO]: [OptiFine] OpenGL: AMD Radeon HD 7800 Series, version 4.6.14830 Compatibility Profile Context 22.6.1 27.20.20913.2000, ATI Technologies Inc.
+[22:42:47] [Client thread/INFO]: [OptiFine] OpenGL Version: 4.6.14830
+[22:42:47] [Client thread/INFO]: [OptiFine] OpenGL Fancy fog: Not available (GL_NV_fog_distance)
+[22:42:47] [Client thread/INFO]: [OptiFine] Maximum texture size: 16384x16384
+[22:42:47] [VersionCheck/INFO]: [OptiFine] Checking for new version
+[22:42:47] [Client thread/INFO]: [Shaders] OpenGL Version: 4.6.14830 Compatibility Profile Context 22.6.1 27.20.20913.2000
+[22:42:47] [Client thread/INFO]: [Shaders] Vendor:  ATI Technologies Inc.
+[22:42:47] [Client thread/INFO]: [Shaders] Renderer: AMD Radeon HD 7800 Series
+[22:42:47] [Client thread/INFO]: [Shaders] Capabilities:  2.0  2.1  3.0  3.2  4.0 
+[22:42:47] [Client thread/INFO]: [Shaders] GL_MAX_DRAW_BUFFERS: 8
+[22:42:47] [Client thread/INFO]: [Shaders] GL_MAX_COLOR_ATTACHMENTS_EXT: 8
+[22:42:47] [Client thread/INFO]: [Shaders] GL_MAX_TEXTURE_IMAGE_UNITS: 32
+[22:42:47] [Client thread/INFO]: [Shaders] Load shaders configuration.
+[22:42:47] [Client thread/INFO]: [Shaders] Save shaders configuration.
+[22:42:47] [Client thread/INFO]: [Shaders] No shaderpack loaded.
+[22:42:47] [Client thread/INFO]: [OptiFine] [Shaders] Delayed loading of block mappings after resources are loaded
+[22:42:47] [Client thread/INFO]: [OptiFine] [Shaders] Delayed loading of item mappings after resources are loaded
+[22:42:47] [Client thread/INFO]: [OptiFine] [Shaders] Delayed loading of entity mappings after resources are loaded
+[22:42:47] [Client thread/WARN]: =============================================================
+[22:42:47] [Client thread/WARN]: MOD HAS DIRECT REFERENCE System.exit() THIS IS NOT ALLOWED REROUTING TO FML!
+[22:42:47] [Client thread/WARN]: Offendor: com/sun/jna/Native.main([Ljava/lang/String;)V
+[22:42:47] [Client thread/WARN]: Use FMLCommonHandler.exitJava instead
+[22:42:47] [Client thread/WARN]: =============================================================
+[22:42:47] [VersionCheck/INFO]: [OptiFine] Version found: M5
+[22:42:47] [Client thread/INFO]: Forge Mod Loader has detected optifine OptiFine_1.8.9_HD_U_M5, enabling compatibility features
+[22:42:47] [Client thread/INFO]: Could not load splash.properties, will create a default one
+[22:42:47] [Client thread/INFO]: [net.minecraftforge.fml.client.SplashProgress:start:246]: ---- Minecraft Crash Report ----
+// My bad.
+
+Time: 24-6-28 下午10:42
+Description: Loading screen debug info
+
+This is just a prompt for computer specs to be printed. THIS IS NOT A ERROR
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.9
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_371, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 801208816 bytes (764 MB) / 1073741824 bytes (1024 MB) up to 4697620480 bytes (4480 MB)
+	JVM Flags: 11 total; -Xmx4471m -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32m -XX:-UseAdaptiveSizePolicy -XX:-OmitStackTraceInFastThrow -XX:-DontCompileHugeMethods -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: 
+	Loaded coremods (and transformers): 
+	GL info: ' Vendor: 'ATI Technologies Inc.' Version: '4.6.14830 Compatibility Profile Context 22.6.1 27.20.20913.2000' Renderer: 'AMD Radeon HD 7800 Series'
+[22:42:48] [Client thread/INFO]: MinecraftForge v11.15.1.2318 Initialized
+[22:42:48] [Client thread/INFO]: Replaced 229 ore recipies
+[22:42:48] [Client thread/INFO]: Found 0 mods from the command line. Injecting into mod discoverer
+[22:42:48] [Client thread/INFO]: Searching F:\.myproject\doself\KevinClient-Reborn-master\run\mods for mods
+[22:42:49] [Client thread/INFO]: Forge Mod Loader has identified 3 mods to load
+[22:42:49] [Client thread/INFO]: Attempting connection with missing mods [mcp, FML, Forge] at CLIENT
+[22:42:49] [Client thread/INFO]: Attempting connection with missing mods [mcp, FML, Forge] at SERVER
+[22:42:50] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge
+[22:42:50] [Client thread/INFO]: Processing ObjectHolder annotations
+[22:42:50] [Client thread/INFO]: Found 384 ObjectHolder annotations
+[22:42:50] [Client thread/INFO]: Identifying ItemStackHolder annotations
+[22:42:50] [Client thread/INFO]: Found 0 ItemStackHolder annotations
+[22:42:50] [Client thread/INFO]: Configured a dormant chunk cache size of 0
+[22:42:50] [Client thread/INFO]: Applying holder lookups
+[22:42:50] [Forge Version Check/INFO]: [Forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
+[22:42:50] [Client thread/INFO]: Holder lookups applied
+[22:42:50] [Client thread/INFO]: Injecting itemstacks
+[22:42:50] [Client thread/INFO]: Itemstack injection complete
+[22:42:50] [Client thread/INFO]: [OptiFine] *** Reloading textures ***
+[22:42:50] [Client thread/INFO]: [OptiFine] Resource packs: Default
+[22:42:50] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[22:42:50] [Thread-9/INFO]: Initializing LWJGL OpenAL
+[22:42:50] [Thread-9/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:42:50] [Thread-9/INFO]: OpenAL initialized.
+[22:42:51] [Sound Library Loader/INFO]: Sound engine started
+[22:42:52] [Client thread/INFO]: [OptiFine] Mipmap levels: 4
+[22:42:52] [Client thread/INFO]: [OptiFine] Multitexture: false
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/0_glass_white/glass_pane_white.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/0_glass_white/glass_white.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/10_glass_purple/glass_pane_purple.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/10_glass_purple/glass_purple.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/11_glass_blue/glass_blue.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/11_glass_blue/glass_pane_blue.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/12_glass_brown/glass_brown.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/12_glass_brown/glass_pane_brown.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/13_glass_green/glass_green.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/13_glass_green/glass_pane_green.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/14_glass_red/glass_pane_red.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/14_glass_red/glass_red.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/15_glass_black/glass_black.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/15_glass_black/glass_pane_black.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/1_glass_orange/glass_orange.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/1_glass_orange/glass_pane_orange.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/2_glass_magenta/glass_magenta.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/2_glass_magenta/glass_pane_magenta.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/3_glass_light_blue/glass_light_blue.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/3_glass_light_blue/glass_pane_light_blue.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/4_glass_yellow/glass_pane_yellow.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/4_glass_yellow/glass_yellow.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/5_glass_lime/glass_lime.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/5_glass_lime/glass_pane_lime.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/6_glass_pink/glass_pane_pink.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/6_glass_pink/glass_pink.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/7_glass_gray/glass_gray.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/7_glass_gray/glass_pane_gray.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/8_glass_silver/glass_pane_silver.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/8_glass_silver/glass_silver.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/9_glass_cyan/glass_cyan.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/9_glass_cyan/glass_pane_cyan.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/bookshelf.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/glass.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/glasspane.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/sandstone.properties
+[22:42:52] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
+[22:42:52] [Client thread/INFO]: [OptiFine] BetterGrass: Parsing default configuration optifine/bettergrass.properties
+[22:42:52] [Client thread/INFO]: Created: 16x16 textures-atlas
+[22:42:52] [Client thread/INFO]: [OptiFine] Animated sprites: 0
+[22:42:53] [Client thread/INFO]: Injecting itemstacks
+[22:42:53] [Client thread/INFO]: Itemstack injection complete
+[22:42:53] [Client thread/INFO]: Forge Mod Loader has successfully loaded 3 mods
+[22:42:53] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge
+[22:42:53] [Client thread/INFO]: [OptiFine] *** Reloading textures ***
+[22:42:53] [Client thread/INFO]: [OptiFine] Resource packs: Default
+[22:42:53] [Client thread/INFO]: SoundSystem shutting down...
+[22:42:53] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[22:42:53] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[22:42:54] [Thread-11/INFO]: Initializing LWJGL OpenAL
+[22:42:54] [Thread-11/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:42:54] [Thread-11/INFO]: OpenAL initialized.
+[22:42:54] [Sound Library Loader/INFO]: Sound engine started
+[22:42:55] [Client thread/INFO]: [OptiFine] Mipmap levels: 4
+[22:42:55] [Client thread/INFO]: [OptiFine] Multitexture: false
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/0_glass_white/glass_pane_white.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/0_glass_white/glass_white.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/10_glass_purple/glass_pane_purple.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/10_glass_purple/glass_purple.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/11_glass_blue/glass_blue.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/11_glass_blue/glass_pane_blue.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/12_glass_brown/glass_brown.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/12_glass_brown/glass_pane_brown.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/13_glass_green/glass_green.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/13_glass_green/glass_pane_green.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/14_glass_red/glass_pane_red.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/14_glass_red/glass_red.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/15_glass_black/glass_black.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/15_glass_black/glass_pane_black.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/1_glass_orange/glass_orange.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/1_glass_orange/glass_pane_orange.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/2_glass_magenta/glass_magenta.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/2_glass_magenta/glass_pane_magenta.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/3_glass_light_blue/glass_light_blue.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/3_glass_light_blue/glass_pane_light_blue.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/4_glass_yellow/glass_pane_yellow.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/4_glass_yellow/glass_yellow.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/5_glass_lime/glass_lime.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/5_glass_lime/glass_pane_lime.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/6_glass_pink/glass_pane_pink.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/6_glass_pink/glass_pink.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/7_glass_gray/glass_gray.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/7_glass_gray/glass_pane_gray.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/8_glass_silver/glass_pane_silver.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/8_glass_silver/glass_silver.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/9_glass_cyan/glass_cyan.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/9_glass_cyan/glass_pane_cyan.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/bookshelf.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/glass.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/glasspane.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/sandstone.properties
+[22:42:55] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
+[22:42:55] [Client thread/INFO]: [OptiFine] BetterGrass: Parsing default configuration optifine/bettergrass.properties
+[22:42:56] [Client thread/INFO]: [OptiFine] Custom loader sprites: 1
+[22:42:56] [Client thread/INFO]: [OptiFine] Custom loader sprites (skipped): 1
+[22:42:56] [Client thread/INFO]: Created: 1024x512 textures-atlas
+[22:42:56] [Client thread/INFO]: [OptiFine] Animated sprites: 11
+[22:42:56] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: mods.betterfoliage.client.BetterFoliageClient
+[22:42:56] [Client thread/INFO]: [OptiFine] *** Reloading custom textures ***
+[22:42:57] [Client thread/INFO]: [OptiFine] Enable face culling: acacia_leaves, birch_leaves, dark_oak_leaves, jungle_leaves, oak_leaves, spruce_leaves
+[22:43:15] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, 饼干自己组装的pack【提升帧率】.zip
+[22:43:15] [Client thread/INFO]: [OptiFine] *** Reloading textures ***
+[22:43:15] [Client thread/INFO]: [OptiFine] Resource packs: 饼干自己组装的pack【提升帧率】.zip
+[22:43:15] [Client thread/INFO]: SoundSystem shutting down...
+[22:43:15] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[22:43:15] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[22:43:15] [Thread-13/INFO]: Initializing LWJGL OpenAL
+[22:43:15] [Thread-13/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:43:15] [Client thread/INFO]: [OptiFine] Loading mcpatcher/font/ascii.properties
+[22:43:16] [Client thread/INFO]: [OptiFine] Loading mcpatcher/font/ascii_sga.properties
+[22:43:16] [Thread-13/INFO]: OpenAL initialized.
+[22:43:16] [Sound Library Loader/INFO]: Sound engine started
+[22:43:17] [Client thread/INFO]: [OptiFine] Sprite size: 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Mipmap levels: 5
+[22:43:17] [Client thread/INFO]: [OptiFine] Multitexture: false
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass/glass.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_clear/glass.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_gray/glass_gray.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_black/glass_black.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_blue/glass_blue.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_brown/glass_brown.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_cyan/glass_cyan.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_gray/glass_gray.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_green/glass_green.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_light_blue/glass_light_blue.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_lime/glass_lime.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_magenta/glass_magenta.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_orange/glass_orange.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_pink/glass_pink.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_purple/glass_purple.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_red/glass_red.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_silver/glass_silver.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_white/glass_white.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_stained/glass_yellow/glass_yellow.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
+[22:43:17] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
+[22:43:17] [Client thread/INFO]: [OptiFine] BetterGrass: Parsing default configuration optifine/bettergrass.properties
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/9, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/7, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/8, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/5, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/6, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/3, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/4, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/1, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/2, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/0, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/door_acacia, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/rabbit_raw, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/default/empty, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/rabbit_cooked, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/19, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/18, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/17, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/16, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/11, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/10, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/15, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/14, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/13, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/12, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/29, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/28, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/27, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/22, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/21, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/20, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/26, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/25, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/24, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/23, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/39, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/38, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/33, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/32, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/31, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/30, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/37, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/36, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/35, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/34, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/40, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/44, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/43, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/42, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/41, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/46, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass/45, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/door_birch, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/diamond, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/43, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/44, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/45, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/46, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/40, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/41, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/42, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/29, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/32, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/33, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/34, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/35, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/36, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/37, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/38, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/39, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/30, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/31, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/18, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/19, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/door_spruce, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/21, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/22, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/23, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/24, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/25, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/26, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/27, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/28, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/mutton_raw, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/20, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/10, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/11, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/12, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/13, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/14, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/15, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/16, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/17, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/rabbit_hide, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/rabbit_foot, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/door_dark_oak, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/barrier, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/sugar, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/9, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/0, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/3, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/4, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/1, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/2, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/7, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/8, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/5, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:mcpatcher/ctm/glass_gray/6, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/wooden_armorstand, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/prismarine_shard, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/prismarine_crystals, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/rabbit_stew, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/door_jungle, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Scaled too small texture: minecraft:items/mutton_cooked, 16 -> 32
+[22:43:17] [Client thread/INFO]: [OptiFine] Custom loader sprites: 1
+[22:43:17] [Client thread/INFO]: [OptiFine] Custom loader sprites (skipped): 1
+[22:43:17] [Client thread/WARN]: textures: dropping miplevel from 5 to 4, because of minimum power of two: 16
+[22:43:17] [Client thread/INFO]: Created: 2048x1024 textures-atlas
+[22:43:17] [Client thread/INFO]: [OptiFine] Animated sprites: 11
+[22:43:18] [Client thread/INFO]: [OptiFine] *** Reloading custom textures ***
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomColors: Colormap mcpatcher/colormap/water.png
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomColors: Colormap mcpatcher/colormap/swampgrass.png
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomColors: Colormap mcpatcher/colormap/swampfoliage.png
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomColors: Colormap mcpatcher/colormap/sky0.png
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomColors: Colormap mcpatcher/lightmap/world-1.png
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomColors: Colormap mcpatcher/lightmap/world0.png
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomColors: Colormap mcpatcher/lightmap/world1.png
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomColors: Loading mcpatcher/color.properties
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomColors: drop.water = ffffff
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomColors: lilypad = 577119
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomColors: Potion colors: 20
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomSky properties: mcpatcher/sky/world0/sky1.properties
+[22:43:18] [Client thread/INFO]: [OptiFine] CustomSky properties: mcpatcher/sky/world0/sky2.properties
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky properties: mcpatcher/sky/world0/sky3.properties
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky properties: mcpatcher/sky/world0/sky4.properties
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky properties: mcpatcher/sky/world0/sky5.properties
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky: Texture not found: minecraft:terrain/sky0/sky_sunflare3.png
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky properties: mcpatcher/sky/world0/sky6.properties
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky: Texture not found: minecraft:terrain/sky0/sky_sunflare.png
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky properties: mcpatcher/sky/world0/sky7.properties
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky: Texture not found: minecraft:terrain/sky0/sky_box.png
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky properties: mcpatcher/sky/world0/sky8.properties
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky: Texture not found: minecraft:terrain/sky0/sky_clouds.png
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky properties: mcpatcher/sky/world0/sky9.properties
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky: Texture not found: minecraft:terrain/sky0/night_skybox.png
+[22:43:19] [Client thread/INFO]: [OptiFine] CustomSky properties: mcpatcher/sky/world0/sky10.properties
+[22:43:19] [Client thread/INFO]: [OptiFine] Enable face culling: acacia_leaves, birch_leaves, dark_oak_leaves, jungle_leaves, oak_leaves, spruce_leaves
+[22:43:23] [Server thread/INFO]: Starting integrated minecraft server version 1.9
+[22:43:23] [Server thread/INFO]: Generating keypair
+[22:43:24] [Server thread/INFO]: Loading dimension 0 (New World) (net.minecraft.server.integrated.IntegratedServer@22686dc7)
+[22:43:24] [Server thread/INFO]: Loading dimension 1 (New World) (net.minecraft.server.integrated.IntegratedServer@22686dc7)
+[22:43:24] [Server thread/INFO]: Loading dimension -1 (New World) (net.minecraft.server.integrated.IntegratedServer@22686dc7)
+[22:43:24] [Server thread/INFO]: Preparing start region for level 0
+[22:43:25] [Server thread/INFO]: Preparing spawn area: 90%
+[22:43:25] [Server thread/INFO]: Changing view distance to 8, from 10
+[22:43:26] [Server thread/WARN]: Invalid statistic in F:\.myproject\doself\KevinClient-Reborn-master\run\saves\New World\stats\61cb666d-bb6c-3956-8e15-9ddbc36cc3df.json: Don't know what stat.useItem.267 is
+[22:43:26] [Server thread/WARN]: Invalid statistic in F:\.myproject\doself\KevinClient-Reborn-master\run\saves\New World\stats\61cb666d-bb6c-3956-8e15-9ddbc36cc3df.json: Don't know what stat.useItem.35 is
+[22:43:26] [Netty Local Client IO #0/INFO]: Server protocol version 2
+[22:43:26] [Netty Server IO #1/INFO]: Client protocol version 2
+[22:43:26] [Netty Server IO #1/INFO]: Client attempting to join with 3 mods : FML@8.0.99.99,Forge@11.15.1.2318,mcp@9.19
+[22:43:26] [Netty Local Client IO #0/INFO]: [Netty Local Client IO #0] Client side modded connection established
+[22:43:26] [Server thread/INFO]: [Server thread] Server side modded connection established
+[22:43:26] [Server thread/INFO]: Chaoying_L[local:E:186d6446] logged in with entity id 307 at (-26.830187044262324, 75.0, 73.23631977971378)
+[22:43:26] [Server thread/INFO]: Chaoying_L 加入了游戏
+[22:43:29] [Server thread/INFO]: Saving and pausing game...
+[22:43:29] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[22:43:29] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[22:43:29] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[22:43:29] [Server thread/INFO]: Stopping server
+[22:43:29] [Server thread/INFO]: Saving players
+[22:43:29] [Server thread/INFO]: Saving worlds
+[22:43:29] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[22:43:29] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[22:43:29] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[22:43:30] [Server thread/INFO]: Unloading dimension 0
+[22:43:30] [Server thread/INFO]: Unloading dimension -1
+[22:43:30] [Server thread/INFO]: Unloading dimension 1
+[22:43:30] [Server thread/INFO]: Applying holder lookups
+[22:43:30] [Server thread/INFO]: Holder lookups applied
+[22:43:44] [Client thread/INFO]: Connecting to 127.0.0.1, 25568
+[22:43:44] [Netty Client IO #1/INFO]: Aborting client handshake "VANILLA"
+[22:43:44] [Netty Client IO #1/INFO]: [Netty Client IO #1] Client side vanilla connection established
+[22:43:45] [Client thread/INFO]: [CHAT] §6§l[AD] §r购买布吉岛外挂Styles Lite前往 luren.icu 效率保证，质量保证！
+[22:43:45] [Client thread/INFO]: [CHAT] §6§l[AD] §rGPT/音乐/绘图 AI站点 chat.galcraft.top
+[22:43:45] [Client thread/INFO]: [CHAT] 队伍列表§r [§6手动输入§r] 返回§r §d（VIP）§f樱木花道§r 
+[22:43:45] [Client thread/INFO]: [CHAT] 邀请成员§r [§6手动输入§r] 返回§r 
+[22:43:45] [Client thread/INFO]: [CHAT] {{team}}§a的队伍§r §b{{name}}§r [§6邀请玩家§r] [§6申请列表§r] [§6踢出队员§r] [§6离开队伍§r] [§6集结队员§r] [§6解散队伍§r] 
+[22:43:45] [Client thread/INFO]: [CHAT] 输入玩家名称§r [§b{{输入框}}§r§6提交§r] 关闭界面§r 
+[22:43:45] [Client thread/INFO]: [CHAT] 申请列表§r 返回§r 
+[22:43:45] [Client thread/INFO]: [CHAT] 组队系统§r [§6创建队伍§r] [§6加入队伍§r] 
+[22:43:45] [Client thread/INFO]: [CHAT] 踢出成员§r 返回§r §d（VIP）§f樱木花道§r 
+[22:43:45] [Client thread/INFO]: [CHAT] §9&l亲爱的: %player_name% §9&l欢迎来到花雨庭！ §9&l请在左侧选择你想游玩的游戏！§r [§6起床战争§r] [§6空岛战争§r] [§6休闲游戏§r] [§6竞技游戏§r] [§6生存§r] [§6战争§r] [§6新闻内容§r] 
+[22:43:46] [Netty Client IO #1/INFO]: Applying holder lookups
+[22:43:46] [Netty Client IO #1/INFO]: Holder lookups applied
+[22:43:46] [Netty Client IO #1/INFO]: Server protocol version 2
+[22:43:46] [Netty Client IO #1/INFO]: Attempting connection with missing mods [mcp, FML, Forge] at SERVER
+[22:43:49] [Client thread/INFO]: [CHAT] [§6 练习场§r] [§6 8队单人绝杀模式§r] [§6 8队双人绝杀模式§r] [§6 4队4人绝杀模式§r] [§6无限火力16§r] [§6无限火力32§r] 
+[22:43:49] [Client thread/INFO]: [CHAT] [花雨庭] 您有1封未读邮件，按M键查看
+[22:43:49] [Client thread/INFO]: [CHAT] 
+[22:43:51] [Client thread/INFO]: [CHAT] 起床战争>> 01:00:00 是这个地图的记录!
+[22:43:51] [Client thread/INFO]: [CHAT] 申请列表§r 返回§r 
+[22:43:51] [Client thread/INFO]: [CHAT] {{team}}§a的队伍§r §b{{name}}§r [§6邀请玩家§r] [§6申请列表§r] [§6踢出队员§r] [§6离开队伍§r] [§6集结队员§r] [§6解散队伍§r] 
+[22:43:51] [Client thread/INFO]: [CHAT] 输入玩家名称§r [§b{{输入框}}§r§6提交§r] 关闭界面§r 
+[22:43:51] [Client thread/INFO]: [CHAT] 队伍列表§r [§6手动输入§r] 返回§r §d（VIP）§f樱木花道§r 
+[22:43:51] [Client thread/INFO]: [CHAT] 邀请成员§r [§6手动输入§r] 返回§r 
+[22:43:51] [Client thread/INFO]: [CHAT] 踢出成员§r 返回§r §d（VIP）§f樱木花道§r 
+[22:43:51] [Client thread/INFO]: [CHAT] 组队系统§r [§6创建队伍§r] [§6加入队伍§r] 
+[22:43:51] [Client thread/INFO]: [CHAT] 起床战争>> JFFES 加入了游戏!
+[22:43:51] [Client thread/INFO]: [CHAT] 起床战争>> 欢悦的鼍将发短信 加入了游戏!
+[22:43:51] [Client thread/INFO]: [CHAT] 起床战争>> 游戏将在10 秒后开始!
+[22:43:51] [Client thread/INFO]: [CHAT] 起床战争>> 游戏将在10 秒后开始!
+[22:43:52] [Client thread/INFO]: [CHAT] 起床战争>> 游戏将在9 秒后开始!
+[22:43:53] [Client thread/INFO]: [CHAT] 起床战争>> 游戏将在8 秒后开始!
+[22:43:54] [Client thread/INFO]: [CHAT] 起床战争>> 游戏将在7 秒后开始!
+[22:43:55] [Client thread/INFO]: [CHAT] 起床战争>> 游戏将在6 秒后开始!
+[22:43:56] [Client thread/INFO]: [CHAT] 起床战争>> 游戏将在5 秒后开始!
+[22:43:57] [Client thread/INFO]: [CHAT] 起床战争>> 游戏将在4 秒后开始!
+[22:43:58] [Client thread/INFO]: [CHAT] 起床战争>> 游戏将在3 秒后开始!
+[22:43:59] [Client thread/INFO]: [CHAT] 起床战争>> 游戏将在2 秒后开始!
+[22:44:00] [Client thread/INFO]: [CHAT] 起床战争>> 游戏将在1 秒后开始!
+[22:44:01] [Client thread/INFO]: [CHAT] 起床战争>> 游戏开始 ...
+[22:44:01] [Client thread/INFO]: [CHAT] 起床战争>> 01:00:00 是这个地图的记录!
+[22:44:01] [Client thread/INFO]: [CHAT] 起床战争>> 游戏 '海洋神殿' 刚刚开始!
+[22:44:16] [Client thread/INFO]: [CHAT] §d§l[Proxy IRC] §r[EnvisionNEL(2811)] 离开了IRC
+[22:44:26] [Client thread/INFO]: [CHAT] 起床战争>> 星铁高手丶芒果剑[❤16] (绿之队)杀死了 橘子味蝙蝠画 (红之队)!
+[22:44:29] [Client thread/INFO]: [CHAT] 起床战争>> 玩家 橘子味蝙蝠画 (红之队) 离开了游戏!
+[22:44:31] [Client thread/INFO]: [CHAT] §d§l[Proxy IRC] §r[EnvisionNEL(2805)] 离开了IRC
+[22:44:33] [Client thread/INFO]: [CHAT] 起床战争>> 玩家 星铁高手丶芒果剑 (绿之队) 离开了游戏!
+[22:44:33] [Client thread/INFO]: [CHAT] 起床战争>> 小浔睡不着[❤20] (黄之队)杀死了 None_forpl1 (蓝之队)!
+[22:44:35] [Client thread/INFO]: [CHAT] §d§l[Proxy IRC] §r[EnvisionNEL(1149)] 加入了IRC
+[22:44:35] [Client thread/INFO]: [CHAT] §d§l[Proxy IRC] §r[EnvisionNEL(2051)] 加入了IRC
+[22:44:39] [Client thread/INFO]: [CHAT] 
+[22:44:39] [Client thread/INFO]: [CHAT] 
+[22:44:42] [Client thread/INFO]: [CHAT] 
+[22:44:42] [Client thread/INFO]: [CHAT] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+[22:44:42] [Client thread/INFO]: [CHAT] ➤
+[22:44:42] [Client thread/INFO]: [CHAT] ➤  玩家None_forpl1在本局游戏中行为异常, 已被踢出游戏并封禁处罚
+[22:44:42] [Client thread/INFO]: [CHAT] ➤
+[22:44:42] [Client thread/INFO]: [CHAT] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+[22:44:42] [Client thread/INFO]: Applying holder lookups
+[22:44:42] [Client thread/INFO]: Holder lookups applied
+[22:44:44] [Client thread/INFO]: Stopping!
+[22:44:44] [Client thread/INFO]: SoundSystem shutting down...
+[22:44:44] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com

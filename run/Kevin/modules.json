@@ -193,17 +193,17 @@
     "KeyBind": 19,
     "Hide": false,
     "AutoDisable": "Disable",
-    "MaxCPS": 13,
-    "MinCPS": 9,
+    "MaxCPS": 14,
+    "MinCPS": 10,
     "NoSpamClick": true,
     "HurtTime": 10,
     "SwingHurtTime": 2,
     "SmartAttack": false,
     "ExtraCPSRandomization": "Off",
     "Range": 3.45,
-    "ThroughWallsRange": 2.96,
-    "RangeSprintReducement": 0.0,
-    "RangeMoveReducement": 0.02,
+    "ThroughWallsRange": 2.56,
+    "RangeSprintReducement": -0.03,
+    "RangeMoveReducement": 0.03,
     "DiscoverRange": 3.45,
     "Priority": "Health",
     "TargetMode": "Switch",
@@ -211,6 +211,8 @@
     "KeepSprint": "On",
     "ScaffoldCheck": true,
     "ArmorBreaker": true,
+    "MaxBreakerHurtTime": 9,
+    "MinBreakerHurtTime": 1,
     "HighVersionAttackDelay": false,
     "HighVersionAttackSwing": true,
     "AttackTiming": "Post",
@@ -221,7 +223,7 @@
     "BlockStatusCheck": true,
     "SwitchStopBlock": true,
     "BlockRate": 100,
-    "BlockRange": 3.36,
+    "BlockRange": 3.44,
     "RayCast": true,
     "RayCastIgnored": false,
     "LivingRayCast": true,
@@ -235,7 +237,7 @@
     "Strafe": "Strict",
     "RandomCenter": false,
     "PitchRangeHelper": true,
-    "MaxPitchRange": 3.04,
+    "MaxPitchRange": 3.05,
     "Outborder": false,
     "FOV": 1314.0,
     "OnlyRotationInAttack": false,
@@ -306,7 +308,7 @@
     "OnlyKillAura": true,
     "AuraClick": true,
     "OnlyPlayer": true,
-    "Debug": false,
+    "Debug": true,
     "BetterAnimation": true,
     "Reverse": false,
     "MaxReverseRange": 2.8,
@@ -549,7 +551,7 @@
     "NoNotFindNotification": true
   },
   "AntiBot": {
-    "State": true,
+    "State": false,
     "KeyBind": 23,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -969,7 +971,7 @@
     "CustomNoRandom": true
   },
   "Teams": {
-    "State": true,
+    "State": false,
     "KeyBind": 23,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -994,7 +996,7 @@
     "API": "Google"
   },
   "NoBlockSlow": {
-    "State": false,
+    "State": true,
     "KeyBind": 45,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -1215,7 +1217,7 @@
     "OnlyBlockInHand": false
   },
   "Speed": {
-    "State": true,
+    "State": false,
     "KeyBind": 47,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -1235,7 +1237,7 @@
     "CustomUpTimer": 1.0,
     "CustomJumpTimer": 1.25,
     "CustomDownTimer": 1.0,
-    "CustomStrafe": "Plus",
+    "CustomStrafe": "Non-Strafe",
     "PlusBoostMode": "Add",
     "PlusMultiplyAmount": 1.1,
     "CustomGroundStay": 0,
@@ -1252,8 +1254,8 @@
     "UseTimer": false,
     "Hypixel-Mode": "FastDown",
     "Hypixel-AirStrafe": false,
-    "CustomRange": 1.18,
-    "Speed": 0.76,
+    "CustomRange": 1.29,
+    "Speed": 0.82,
     "VulcanGround-GroundBoost": false,
     "VulcanGround-BoostDelay": 8,
     "Warning: ": "",
@@ -1395,7 +1397,7 @@
     "AutoDisable": "Disable",
     "Pulse": false,
     "PulseDelay": 1000,
-    "PingMode": "None",
+    "PingMode": "Cancel",
     "InvalidTransaction": true,
     "ColorRainbow": true,
     "R": 255,
@@ -1483,11 +1485,11 @@
     "PotionEffect": false
   },
   "Animations": {
-    "State": true,
-    "KeyBind": 0,
+    "State": false,
+    "KeyBind": 1,
     "Hide": false,
     "AutoDisable": "Disable",
-    "Preset": "Swong",
+    "Preset": "Rotate",
     "TranslateX": 0.0,
     "TranslateY": 0.0,
     "TranslateZ": 0.0,
@@ -1659,11 +1661,11 @@
     "AutoDisable": "Disable"
   },
   "ItemESP": {
-    "State": false,
+    "State": true,
     "KeyBind": 0,
     "Hide": false,
     "AutoDisable": "Disable",
-    "Mode": "Box",
+    "Mode": "ShaderGlow",
     "ShaderRadius": 2.0,
     "R": 0,
     "G": 255,
@@ -1693,11 +1695,11 @@
     "AutoDisable": "Disable"
   },
   "NoFOV": {
-    "State": false,
+    "State": true,
     "KeyBind": 0,
     "Hide": false,
     "AutoDisable": "Disable",
-    "FOV": 1.0
+    "FOV": 1.2
   },
   "NoHurtCam": {
     "State": false,
@@ -1725,7 +1727,7 @@
     "OtherParticleSpeed": 0.4
   },
   "Projectiles": {
-    "State": false,
+    "State": true,
     "KeyBind": 0,
     "Hide": false,
     "AutoDisable": "Disable",
