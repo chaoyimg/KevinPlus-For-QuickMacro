@@ -33,6 +33,7 @@ import net.minecraft.client.gui.inventory.GuiInventory
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.Entity
+import net.minecraft.entity.EntityLiving
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.item.EntityArmorStand
 import net.minecraft.entity.player.EntityPlayer
@@ -449,6 +450,7 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
         if (armorbreaker.get()) {
             if (switching) return
             if (mc.thePlayer.heldItem == null) return
+            if (minbreakerhurtTimeValue.get() >= (currentTarget as EntityLivingBase).hurtTime || maxbreakerhurtTimeValue.get() <= (currentTarget as EntityLivingBase).hurtTime || minbreakerhurtTimeValue.get() >= (target as EntityLivingBase).hurtTime || maxbreakerhurtTimeValue.get() <= (target as EntityLivingBase).hurtTime) return
             if (mc.thePlayer.heldItem.item is ItemSword) {
                 if (firstSwordIndex == -1 || secondSwordIndex == -1 || firstSwordIndex == null || secondSwordIndex == null || ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(firstSwordIndex)?.stack) ||  ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(secondSwordIndex)?.stack)) return
                 switching = true
@@ -493,11 +495,11 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
             if (!switching) {
               findNeedSword()
             }
-            if (target == null || currentTarget == null) {
-                if (firstSwordIndex != -1 && secondSwordIndex != -1 && firstSwordIndex != null && secondSwordIndex != null && !ItemUtils.isStackEmpty(
-                        mc.thePlayer?.inventoryContainer?.getSlot(firstSwordIndex)?.stack
-                    ) && !ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(secondSwordIndex)?.stack)
-                ) {
+            if (firstSwordIndex != -1 && secondSwordIndex != -1 && firstSwordIndex != null && secondSwordIndex != null && !ItemUtils.isStackEmpty(
+                    mc.thePlayer?.inventoryContainer?.getSlot(firstSwordIndex)?.stack
+                ) && !ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(secondSwordIndex)?.stack)
+            ) {
+            if ((mc.currentScreen) !is GuiContainer && ((target == null || currentTarget == null) || (minbreakerhurtTimeValue.get() > (currentTarget as EntityLivingBase).hurtTime || maxbreakerhurtTimeValue.get() < (currentTarget as EntityLivingBase).hurtTime || minbreakerhurtTimeValue.get() > (target as EntityLivingBase).hurtTime || maxbreakerhurtTimeValue.get() < (target as EntityLivingBase).hurtTime))) {
                     if (mc.thePlayer.heldItem.item is ItemSword) {
                         switching = true
                         if (mc.thePlayer!!.inventory.currentItem == 0) {
