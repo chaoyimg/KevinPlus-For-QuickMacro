@@ -78,7 +78,7 @@
     "Radius": 3.3
   },
   "AutoWeapon": {
-    "State": true,
+    "State": false,
     "KeyBind": 0,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -189,12 +189,12 @@
     "RestTick": 4
   },
   "Aura": {
-    "State": false,
+    "State": true,
     "KeyBind": 19,
     "Hide": false,
     "AutoDisable": "Disable",
-    "MaxCPS": 12,
-    "MinCPS": 10,
+    "MaxCPS": 11,
+    "MinCPS": 9,
     "NoSpamClick": true,
     "HurtTime": 10,
     "SwingHurtTime": 2,
@@ -211,8 +211,6 @@
     "KeepSprint": "On",
     "ScaffoldCheck": true,
     "ArmorBreaker": true,
-    "MaxBreakerHurtTime": 8,
-    "MinBreakerHurtTime": 1,
     "HighVersionAttackDelay": false,
     "HighVersionAttackSwing": true,
     "AttackTiming": "Post",
@@ -996,7 +994,7 @@
     "API": "Google"
   },
   "NoBlockSlow": {
-    "State": false,
+    "State": true,
     "KeyBind": 45,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -1489,7 +1487,7 @@
     "KeyBind": 1,
     "Hide": false,
     "AutoDisable": "Disable",
-    "Preset": "Jello",
+    "Preset": "Rotate",
     "TranslateX": 0.0,
     "TranslateY": 0.0,
     "TranslateZ": 0.0,
@@ -1499,7 +1497,7 @@
     "ItemScale": 0.4,
     "OnlyBlock": false,
     "RotationItem": false,
-    "AnimationSpeed": 7
+    "AnimationSpeed": 2
   },
   "AntiBlind": {
     "State": false,

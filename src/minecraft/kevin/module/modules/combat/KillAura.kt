@@ -114,8 +114,6 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
 
     //Timing
     private val armorbreaker = BooleanValue("ArmorBreaker", false)
-    private val maxbreakerhurtTimeValue = IntegerValue("MaxBreakerHurtTime", 8, 0, 10) {armorbreaker.get()}
-    private val minbreakerhurtTimeValue = IntegerValue("MinBreakerHurtTime", 1, 0, 10) {armorbreaker.get()}
 
     private val highVersionAttackDelay = BooleanValue("HighVersionAttackDelay", false)
     private val highVersionAttackSwing = BooleanValue("HighVersionAttackSwing", false)
@@ -238,6 +236,7 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
     private var switching = false
     private var firstSwordIndex = -1
     private var secondSwordIndex = -1
+    private var needSearch = false
     // Target
     var sTarget: Entity? = null
     var target: Entity? = null
@@ -287,10 +286,12 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
                         if (mc.thePlayer!!.inventory.currentItem == 0) {
                             if (secondSwordIndex != 36) {
                                 switchslot(0,secondSwordIndex)
+                                secondSwordIndex = 0
                             }
                         } else {
                             if ((mc.thePlayer.inventory.currentItem + 36) != secondSwordIndex) {
                                 switchslot(secondSwordIndex,mc.thePlayer!!.inventory.currentItem + 36)
+                                secondSwordIndex = mc.thePlayer!!.inventory.currentItem + 36
                             }
                         }
                         switching = false
@@ -450,27 +451,56 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
         if (armorbreaker.get()) {
             if (switching) return
             if (mc.thePlayer.heldItem == null) return
-            if (minbreakerhurtTimeValue.get() >= (currentTarget as EntityLivingBase).hurtTime || maxbreakerhurtTimeValue.get() <= (currentTarget as EntityLivingBase).hurtTime || minbreakerhurtTimeValue.get() >= (target as EntityLivingBase).hurtTime || maxbreakerhurtTimeValue.get() <= (target as EntityLivingBase).hurtTime) return
-            if (mc.thePlayer.heldItem.item is ItemSword) {
-                if (firstSwordIndex == -1 || secondSwordIndex == -1 || firstSwordIndex == null || secondSwordIndex == null || ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(firstSwordIndex)?.stack) ||  ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(secondSwordIndex)?.stack)) return
-                switching = true
-                if (mc.thePlayer!!.inventory.currentItem == 0){
-                    if (firstSwordIndex == 36) {
-                        switchslot(36,secondSwordIndex)
-                    }
-                    if (secondSwordIndex == 36) {
-                        switchslot(36,firstSwordIndex)
-                    }
-                }else {
-                    if ((mc.thePlayer.inventory.currentItem + 36) == firstSwordIndex) {
-                        switchslot(secondSwordIndex,firstSwordIndex)
-                    }
-                    if ((mc.thePlayer.inventory.currentItem + 36) == secondSwordIndex) {
-                        switchslot(firstSwordIndex,secondSwordIndex)
+            if (mc.thePlayer.heldItem.item is ItemSword && (mc.currentScreen) !is GuiContainer) {
+                if (firstSwordIndex != -1 && secondSwordIndex != -1 && firstSwordIndex != null && secondSwordIndex != null && !ItemUtils.isStackEmpty(
+                        mc.thePlayer?.inventoryContainer?.getSlot(firstSwordIndex)?.stack
+                    ) && !ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(secondSwordIndex)?.stack)
+                ) {
+                        if ((event.targetEntity as EntityLivingBase).hurtTime == 0) {
+                            if (mc.thePlayer.heldItem.item is ItemSword) {
+                                switching = true
+                                if (mc.thePlayer!!.inventory.currentItem == 0) {
+                                    if (secondSwordIndex != 36) {
+                                        switchslot(0, secondSwordIndex)
+                                        secondSwordIndex = 0
+                                    }
+                                } else {
+                                    if ((mc.thePlayer.inventory.currentItem + 36) != secondSwordIndex) {
+                                        switchslot(secondSwordIndex, mc.thePlayer!!.inventory.currentItem + 36)
+                                        secondSwordIndex = mc.thePlayer!!.inventory.currentItem + 36
+                                    }
+                                }
+                                switching = false
+                            }
+                        } else {
+                            switching = true
+                            if (mc.thePlayer!!.inventory.currentItem == 0) {
+                                if (firstSwordIndex == 36) {
+                                    switchslot(36, secondSwordIndex)
+                                    secondSwordIndex = 36
+                                }
+                                if (secondSwordIndex == 36) {
+                                    switchslot(36, firstSwordIndex)
+                                    firstSwordIndex = 36
+                                }
+                            } else {
+                                if ((mc.thePlayer.inventory.currentItem + 36) == firstSwordIndex) {
+                                    switchslot(secondSwordIndex, firstSwordIndex)
+                                    val temp = secondSwordIndex
+                                    secondSwordIndex = firstSwordIndex
+                                    firstSwordIndex = temp
+                                }
+                                if ((mc.thePlayer.inventory.currentItem + 36) == secondSwordIndex) {
+                                    switchslot(firstSwordIndex, secondSwordIndex)
+                                    val temp = firstSwordIndex
+                                    firstSwordIndex = secondSwordIndex
+                                    secondSwordIndex = temp
+                                }
+                            }
+                            switching = false
+                        }
                     }
                 }
-                switching = false
-            }
         }
     }
     /**
@@ -492,28 +522,8 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
         }
         updateTarget()
         if (armorbreaker.get()) {
-            if (!switching) {
+            if (!switching && (mc.currentScreen is GuiContainer || needSearch)) {
               findNeedSword()
-            }
-            if (firstSwordIndex != -1 && secondSwordIndex != -1 && firstSwordIndex != null && secondSwordIndex != null && !ItemUtils.isStackEmpty(
-                    mc.thePlayer?.inventoryContainer?.getSlot(firstSwordIndex)?.stack
-                ) && !ItemUtils.isStackEmpty(mc.thePlayer?.inventoryContainer?.getSlot(secondSwordIndex)?.stack)
-            ) {
-            if ((mc.currentScreen) !is GuiContainer && ((target == null || currentTarget == null) || (minbreakerhurtTimeValue.get() > (currentTarget as EntityLivingBase).hurtTime || maxbreakerhurtTimeValue.get() < (currentTarget as EntityLivingBase).hurtTime || minbreakerhurtTimeValue.get() > (target as EntityLivingBase).hurtTime || maxbreakerhurtTimeValue.get() < (target as EntityLivingBase).hurtTime))) {
-                    if (mc.thePlayer.heldItem.item is ItemSword) {
-                        switching = true
-                        if (mc.thePlayer!!.inventory.currentItem == 0) {
-                            if (secondSwordIndex != 36) {
-                                switchslot(0,secondSwordIndex)
-                            }
-                        } else {
-                            if ((mc.thePlayer.inventory.currentItem + 36) != secondSwordIndex) {
-                                switchslot(secondSwordIndex,mc.thePlayer!!.inventory.currentItem + 36)
-                            }
-                        }
-                        switching = false
-                    }
-                }
             }
         }
         if (noInventoryAttackValue.get() && ((mc.currentScreen)is GuiContainer ||
@@ -588,6 +598,9 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
     @EventTarget
     fun onPacket(event: PacketEvent) {
         val packet = event.packet
+        if (armorbreaker.get() && packet is C0EPacketClickWindow) {
+            needSearch = true
+        }
         if (autoBlockValue equal "Vulcan" && ((packet is C07PacketPlayerDigging && packet.status == C07PacketPlayerDigging.Action.RELEASE_USE_ITEM) || packet is C08PacketPlayerBlockPlacement) && lastBlocking)
             event.cancelEvent()
     }
@@ -1231,7 +1244,6 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
                 Enchantment.sharpness
             )
         }!!.key
-
         secondSwordIndex = items.filter {    it.value.attributeModifiers["generic.attackDamage"].first().amount + 1.25 * ItemUtils.getEnchantment(
             it.value,
             Enchantment.sharpness
