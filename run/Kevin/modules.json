@@ -210,7 +210,6 @@
     "SwingMode": "Normal",
     "KeepSprint": "OnlyNoHurt",
     "ScaffoldCheck": true,
-    "ArmorBreaker": true,
     "HighVersionAttackDelay": false,
     "HighVersionAttackSwing": true,
     "AttackTiming": "Pre",
@@ -290,6 +289,12 @@
     "NoRegen": true,
     "AliveTicks": 20,
     "LineWidth": 2.0
+  },
+  "BugDamage": {
+    "State": true,
+    "KeyBind": 0,
+    "Hide": false,
+    "AutoDisable": "Disable"
   },
   "TimerRange": {
     "State": false,
@@ -1556,7 +1561,7 @@
     "Items": true
   },
   "ClickGui": {
-    "State": false,
+    "State": true,
     "KeyBind": 54,
     "Hide": false,
     "AutoDisable": "Disable",

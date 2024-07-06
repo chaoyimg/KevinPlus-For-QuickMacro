@@ -61,6 +61,7 @@ class ModuleManager : Listenable {
             KillAura(),
             SuperKnockback(),
             TeleportAttack(),
+            BugDamage(),
             TimerRange
         )
         exploitList = arrayListOf(

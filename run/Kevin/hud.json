@@ -175,5 +175,29 @@
     "VerticalFacing": "Up",
     "FadeSpeed": 2.0,
     "Mode": "AnotherLiquid"
+  },
+  {
+    "Type": "InvItem",
+    "X": -1.0,
+    "Y": 174.0,
+    "Scale": 1.0,
+    "HorizontalFacing": "Left",
+    "VerticalFacing": "Up",
+    "BGR": 0,
+    "BGG": 0,
+    "BGB": 0,
+    "BGAlpha": 150,
+    "TIR": 255,
+    "TIG": 255,
+    "TIB": 255,
+    "TitleRainbow": true,
+    "BOR": 0,
+    "BOG": 0,
+    "BOB": 0,
+    "BorderRainbow": true,
+    "IER": 0,
+    "IEG": 0,
+    "IEB": 0,
+    "InvEmptyStringRainbow": true
   }
 ]
