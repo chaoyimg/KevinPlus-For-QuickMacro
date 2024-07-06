@@ -11,8 +11,8 @@ anaglyph3d:false
 maxFps:260
 fboEnable:true
 difficulty:1
-fancyGraphics:true
-ao:2
+fancyGraphics:false
+ao:0
 renderClouds:false
 resourcePacks:["�����Լ���װ��pack������֡�ʡ�.zip"]
 incompatibleResourcePacks:[]

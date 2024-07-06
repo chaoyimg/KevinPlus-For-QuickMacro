@@ -420,7 +420,7 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
                     velocityInput = true
                         val currentRotation = RotationUtils.serverRotation!!
 
-                        val target = if ((KevinClient.moduleManager.getModule(KillAura::class.java)).state) {((KevinClient.moduleManager.getModule(KillAura::class.java)).target )}
+                        val target = if ((KevinClient.moduleManager.getModule(KillAura::class.java)).state && (KevinClient.moduleManager.getModule(KillAura::class.java)).target != null) {((KevinClient.moduleManager.getModule(KillAura::class.java)).target)}
                          else{
                             RaycastUtils.raycastEntityYaw(
                                 clickRange.get().toDouble(),
