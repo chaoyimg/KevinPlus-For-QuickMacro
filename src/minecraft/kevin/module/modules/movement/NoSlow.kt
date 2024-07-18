@@ -62,7 +62,9 @@ class NoSlow : Module("NoItemSlow", "Cancels slowness effects caused by soulsand
     private var packetBuf = LinkedList<Packet<INetHandlerPlayServer>>()
     private var aura: KillAura? = null
     private var count = 0
+    private var windowid = 0
     private var shouldSlow = true
+    private var inwindow = false
     private var needreportdelay = false
     private val reportdelay = MSTimer()
     private var lastItem: ItemStack? = null
@@ -71,6 +73,8 @@ class NoSlow : Module("NoItemSlow", "Cancels slowness effects caused by soulsand
         if (foodValue.get()) {
             reportdelay.reset()
             needreportdelay =false
+            inwindow = false
+            windowid = 0
         }
     }
 
@@ -283,22 +287,26 @@ class NoSlow : Module("NoItemSlow", "Cancels slowness effects caused by soulsand
                 val stack = mc.thePlayer.heldItem.item ?: return
                 if ((stack is ItemFood || stack is ItemPotion || stack is ItemBucketMilk)) {
                     shouldSlow = true
-                        if (!needreportdelay || (reportdelay.hasTimePassed(10000))){
+                        if (!needreportdelay || (reportdelay.hasTimePassed(12000))){
                             mc.thePlayer.sendChatMessage("/report")
                         }
                 }
             }
-            if (packet is S2FPacketSetSlot) {
-                if (packet.slot >= 54) {
+            if (packet is S2FPacketSetSlot && inwindow) {
+                if (packet.slot >= 54 && packet.windowId == windowid && packet.windowId != 0) {
                     packet.windowId = 0
                     packet.slot -= 45
+                }else{
+                    windowid = 0
                 }
                 if (packet.slot == mc.thePlayer.inventory.currentItem + 36) {
                     if (packet.item.stackSize == mc.thePlayer.inventory.getCurrentItem().stackSize){
                         event.cancelEvent()
                     }else {
                         mc.netHandler.addToSendQueue(C0DPacketCloseWindow())
+                        inwindow = false
                         shouldSlow = true
+                        windowid = 0
                     }
                 }
             }
@@ -307,9 +315,13 @@ class NoSlow : Module("NoItemSlow", "Cancels slowness effects caused by soulsand
                 shouldSlow = false
                 reportdelay.reset()
                 needreportdelay = true
+                inwindow = true
+                windowid = packet.windowId
             }
             if (packet is S08PacketPlayerPosLook) {
-                 shouldSlow = true
+                inwindow = false
+                shouldSlow = true
+                windowid = 0
             }
 
         }

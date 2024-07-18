@@ -435,7 +435,7 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
                                 })
                         }
                     if (target != null && target != mc.thePlayer) {
-                            for (i in 0 until clickCount.get()) {
+                            for (i in 0 until (clickCount.get() + getNoXZExtraClicl(packet))) {
                                 if (mc.thePlayer.serverSprintState && MovementUtils.isMoving) {
                                     mc.netHandler.addToSendQueue(C02PacketUseEntity(target, C02PacketUseEntity.Action.ATTACK))
                                     mc.netHandler.addToSendQueue(C0APacketAnimation())
@@ -536,6 +536,30 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
         }
         return false
     }
+    private fun getNoXZExtraClicl(packetEntityVelocity: S12PacketEntityVelocity): Int {
+        val strength = Vec3(
+            packetEntityVelocity.motionX.toDouble(),
+            packetEntityVelocity.motionY.toDouble(),
+            packetEntityVelocity.motionZ.toDouble()
+        ).lengthVector()
+        val motionNoXZ: Int
+        motionNoXZ = if (strength >= 20000.0) {
+            if (mc.thePlayer.onGround) {
+                4
+            } else {
+                5
+            }
+        } else if (strength >= 5000.0) {
+            if (mc.thePlayer.onGround) {
+               2
+            } else {
+                1
+            }
+        } else {
+            0
+        }
+        return motionNoXZ
+    }
     private fun getMotionNoXZ(packetEntityVelocity: S12PacketEntityVelocity): Double {
         val strength = Vec3(
             packetEntityVelocity.motionX.toDouble(),
@@ -545,15 +569,15 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
         val motionNoXZ: Double
         motionNoXZ = if (strength >= 20000.0) {
             if (mc.thePlayer.onGround) {
-                0.05425
+                0.0525
             } else {
-                0.065
+                0.058
             }
         } else if (strength >= 5000.0) {
             if (mc.thePlayer.onGround) {
-                0.01575
+                0.01525
             } else {
-                0.045
+                0.043
             }
         } else {
             0.00735

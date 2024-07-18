@@ -58,7 +58,7 @@ object Collision : SpeedMode("Collision") {
             }
 
             "Mix" -> {
-                if (mc.thePlayer.onGround) {
+                if (mc.thePlayer.onGround || mc.thePlayer.serverSprintState) {
                     mc.thePlayer.addVelocity(-sin(yaw) * boost, 0.0, cos(yaw) * boost)
                 } else {
                     mc.thePlayer.jumpMovementFactor = boost.toFloat()
