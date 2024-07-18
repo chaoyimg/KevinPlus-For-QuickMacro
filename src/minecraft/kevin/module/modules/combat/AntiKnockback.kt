@@ -95,7 +95,7 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
     private var motionReduce = 0.0
     private var motionYReduce = 0.0
     var attacked = false
-
+    private var start = 0
     override val tag: String
         get() = if (modeValue.get() == "Simple") "H:${horizontalValue.get()*100}% V:${verticalValue.get()*100}%" else modeValue.get()
 
@@ -232,21 +232,29 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
                 mc.thePlayer.setVelocity(0.0, 0.0, 0.0)
             }
             "attackmix" -> {
-                if (velocityInput) {
-                    if (mc.thePlayer.hurtTime == 9) {
-                        if (++jumped % 2 == 0 && mc.thePlayer.onGround && mc.thePlayer.isSprinting && mc.currentScreen == null) {
-                            mc.gameSettings.keyBindJump.pressed = true
-                            jumped = 0 // reset
-                        }
-                    } else {
-                        mc.gameSettings.keyBindJump.pressed = GameSettings.isKeyDown(mc.gameSettings.keyBindJump)
+                    while (mc.thePlayer.hurtTime >= 8) {
+                        mc.gameSettings.keyBindJump.pressed = true
+                        break
                     }
-                }
+                    while (mc.thePlayer.hurtTime >= 7 && !mc.gameSettings.keyBindForward.pressed) {
+                        mc.gameSettings.keyBindJump.pressed = true
+                        start = 1
+                        break
+                    }
+                    if (mc.thePlayer.hurtTime in 1..6) {
+                        mc.gameSettings.keyBindJump.pressed = false
+                        if (start == 1) {
+                            mc.gameSettings.keyBindForward.pressed = false
+                            start = 0
+                        }
+                    }
+                    if (mc.thePlayer.hurtTime == 1) {
+                        mc.gameSettings.keyBindForward.pressed = GameSettings.isKeyDown(mc.gameSettings.keyBindForward)
+                    }
                 if (mc.thePlayer.serverSprintState && MovementUtils.isMoving) {
                     if (velocityInput) {
                         if (attacked) {
-                            if (motionReduce != 0.0 && motionYReduce != 0.0)
-                            {
+                            if (motionReduce != 0.0 && motionYReduce != 0.0) {
                                 mc.thePlayer.motionX *= motionReduce
                                 mc.thePlayer.motionZ *= motionReduce
                                 mc.thePlayer.motionY = motionYReduce
@@ -255,11 +263,6 @@ class AntiKnockback : Module("AntiKnockback","Allows you to modify the amount of
                         }
                     }
                     if (mc.thePlayer.hurtTime == 0) {
-                        velocityInput = false
-                    }
-                }
-                if (velocityInput) {
-                    if (mc.thePlayer.hurtTime != 9) {
                         velocityInput = false
                     }
                 }

@@ -60,5 +60,5 @@ class NoBlockSlow : Module("NoBlockSlow",description = "", category = ModuleCate
     }
 
     override val tag: String
-        get() = "Destory"
+        get() = "SetAir"
 }

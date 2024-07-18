@@ -476,6 +476,7 @@ public final class RotationUtils extends MinecraftInstance implements Listenable
         return RaycastUtils.raycastEntity(blockReachDistance, entity -> targetEntity != null && targetEntity.equals(entity)) != null;
     }
 
+
     /**
      * Allows you to check if your enemy is behind a wall
      */

@@ -1024,6 +1024,7 @@ class KillAura : Module("Aura","Automatically attacks targets around you.", Keyb
             hitable = if (yawMaxTurnSpeed.get() > 0F) currentTarget == raycastedEntity else true
         } else
             hitable = RotationUtils.isFaced(currentTarget, reach)
+
     }
 
     /**

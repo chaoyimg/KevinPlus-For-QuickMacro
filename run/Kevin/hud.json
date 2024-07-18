@@ -90,15 +90,6 @@
     "PacketCounterMessageMode": "Up"
   },
   {
-    "Type": "Notifications",
-    "X": 0.0,
-    "Y": 8.0,
-    "Scale": 1.0,
-    "HorizontalFacing": "Right",
-    "VerticalFacing": "Down",
-    "NotificationMode": "Kevin"
-  },
-  {
     "Type": "Arraylist",
     "X": -1.0,
     "Y": 3.0,
@@ -143,30 +134,6 @@
     "ArrayList-RectWidth": 2.0
   },
   {
-    "Type": "Scoreboard",
-    "X": 5.0,
-    "Y": 0.0,
-    "Scale": 1.0,
-    "HorizontalFacing": "Right",
-    "VerticalFacing": "Middle",
-    "Text-R": 255,
-    "Text-G": 255,
-    "Text-B": 255,
-    "Background-R": 0,
-    "Background-G": 0,
-    "Background-B": 0,
-    "Background-Alpha": 95,
-    "Rect": false,
-    "Rect-Color": "Custom",
-    "Rect-R": 0,
-    "Rect-G": 111,
-    "Rect-B": 255,
-    "Rect-Alpha": 255,
-    "ClientFont": false,
-    "Shadow": false,
-    "ClientName": true
-  },
-  {
     "Type": "TargetHUD",
     "X": 468.0,
     "Y": 274.0,
@@ -199,5 +166,29 @@
     "IEG": 0,
     "IEB": 0,
     "InvEmptyStringRainbow": true
+  },
+  {
+    "Type": "Scoreboard",
+    "X": 4.0,
+    "Y": 0.0,
+    "Scale": 1.0,
+    "HorizontalFacing": "Right",
+    "VerticalFacing": "Middle",
+    "Text-R": 255,
+    "Text-G": 255,
+    "Text-B": 255,
+    "Background-R": 0,
+    "Background-G": 0,
+    "Background-B": 0,
+    "Background-Alpha": 95,
+    "Rect": false,
+    "Rect-Color": "Custom",
+    "Rect-R": 0,
+    "Rect-G": 111,
+    "Rect-B": 255,
+    "Rect-Alpha": 255,
+    "ClientFont": false,
+    "Shadow": false,
+    "ClientName": true
   }
 ]

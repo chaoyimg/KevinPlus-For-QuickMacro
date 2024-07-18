@@ -25,7 +25,7 @@
     "AACPushXZReducer": 2.0,
     "AACPushYReducer": true,
     "AACv4MotionReducer": 0.62,
-    "ClickCount": 5,
+    "ClickCount": 6,
     "ClickMinHurtTime": 10,
     "ClickRange": 3.36,
     "ClickOnPacket": true,
@@ -189,11 +189,11 @@
     "RestTick": 4
   },
   "Aura": {
-    "State": true,
+    "State": false,
     "KeyBind": 19,
     "Hide": false,
     "AutoDisable": "Disable",
-    "MaxCPS": 13,
+    "MaxCPS": 14,
     "MinCPS": 10,
     "NoSpamClick": true,
     "HurtTime": 10,
@@ -259,7 +259,7 @@
     "KeyBind": 0,
     "Hide": false,
     "AutoDisable": "Disable",
-    "Mode": "OnlyStart",
+    "Mode": "W-Tap",
     "Legit-MaxDelay": 60,
     "Legit-MinDelay": 50,
     "HurtTime": 10,
@@ -291,7 +291,7 @@
     "LineWidth": 2.0
   },
   "BugDamage": {
-    "State": true,
+    "State": false,
     "KeyBind": 0,
     "Hide": false,
     "AutoDisable": "Disable"
@@ -348,7 +348,7 @@
   },
   "AbortBreaking": {
     "State": false,
-    "KeyBind": 0,
+    "KeyBind": -1,
     "Hide": false,
     "AutoDisable": "Disable"
   },
@@ -708,7 +708,7 @@
     "KeyBind": 0,
     "Hide": false,
     "AutoDisable": "Disable",
-    "LocalConfigs": "",
+    "LocalConfigs": "1",
     "CloudConfigs": "",
     "LoadLocalConfig": false,
     "LoadCloudConfig": false,
@@ -812,7 +812,7 @@
     "AutoDisable": "Disable"
   },
   "NoRotateSet": {
-    "State": true,
+    "State": false,
     "KeyBind": 0,
     "Hide": false,
     "AutoDisable": "Disable"
@@ -1003,7 +1003,7 @@
     "KeyBind": 45,
     "Hide": false,
     "AutoDisable": "Disable",
-    "tickDestory": 8
+    "tickDestory": 12
   },
   "FastLadder": {
     "State": true,
@@ -1194,8 +1194,9 @@
     "BowForwardMultiplier": 1.0,
     "BowStrafeMultiplier": 1.0,
     "PacketMode": "SpecialGrim",
-    "Soulsand": true,
-    "LiquidPush": true
+    "QuickMacroFoodBypass": true,
+    "Soulsand": false,
+    "LiquidPush": false
   },
   "NoWeb": {
     "State": false,
@@ -1257,8 +1258,8 @@
     "UseTimer": false,
     "Hypixel-Mode": "FastDown",
     "Hypixel-AirStrafe": false,
-    "CustomRange": 1.28,
-    "Speed": 0.8,
+    "CustomRange": 1.02,
+    "Speed": 0.78,
     "VulcanGround-GroundBoost": false,
     "VulcanGround-BoostDelay": 8,
     "Warning: ": "",
@@ -1488,7 +1489,7 @@
     "PotionEffect": false
   },
   "Animations": {
-    "State": false,
+    "State": true,
     "KeyBind": 1,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -1502,7 +1503,7 @@
     "ItemScale": 0.4,
     "OnlyBlock": false,
     "RotationItem": false,
-    "AnimationSpeed": 4
+    "AnimationSpeed": 20
   },
   "AntiBlind": {
     "State": false,
@@ -1561,7 +1562,7 @@
     "Items": true
   },
   "ClickGui": {
-    "State": true,
+    "State": false,
     "KeyBind": 54,
     "Hide": false,
     "AutoDisable": "Disable",
@@ -1625,7 +1626,7 @@
     "G": 255,
     "B": 255,
     "Rainbow": false,
-    "Team": false,
+    "Team": true,
     "OutlineWidth": 3.0,
     "WireFrameWidth": 2.0,
     "AutoWidth": true
@@ -1793,7 +1794,7 @@
     "KeyBind": 0,
     "Hide": false,
     "AutoDisable": "Disable",
-    "Mode": "Outline",
+    "Mode": "ShaderOutline",
     "Chest": true,
     "EnderChest": true,
     "Furnace": true,
@@ -1950,7 +1951,7 @@
   },
   "Scaffold": {
     "State": false,
-    "KeyBind": 34,
+    "KeyBind": 33,
     "Hide": false,
     "AutoDisable": "Disable",
     "TowerMode": "Jump",
@@ -2003,8 +2004,8 @@
     "Tower-yRange": 0.8,
     "Tower-MinDist": 0.0,
     "Tower-SearchAccuracy": 8,
-    "MaxTurnSpeed": 180.0,
-    "MinTurnSpeed": 180.0,
+    "MaxTurnSpeed": 54.7,
+    "MinTurnSpeed": 43.96,
     "JumpCheck": false,
     "DownCheck": true,
     "Zitter": "Off",

@@ -137,4 +137,22 @@ object MovementUtils : MinecraftInstance() {
         mc.thePlayer.motionZ = 0.0
         if(y) mc.thePlayer.motionY = 0.0
     }
+
+    private fun getDirectionRotation(yaw: Float, strafe: Float, forward: Float): Double {
+        return MathUtils.toRadians(getRawDirection(yaw, strafe, forward)).toDouble()
+    }
+
+    fun getRawDirection(yaw: Float): Float {
+        return getDirectionRotation(yaw, mc.thePlayer.moveStrafing, mc.thePlayer.moveForward).toFloat()
+    }
+    private fun getRawDirection(yaw: Float, strafe: Float, forward: Float): Float {
+        var rotationYaw = yaw
+        if (forward < 0f) rotationYaw += 180f
+        var forward = 1f
+        if (forward < 0f) forward = -0.5f
+        else if (forward > 0f) forward = 0.5f
+        if (strafe > 0f) rotationYaw -= 90f * forward
+        if (strafe < 0f) rotationYaw += 90f * forward
+        return rotationYaw
+    }
 }

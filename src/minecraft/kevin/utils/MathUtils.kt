@@ -16,6 +16,7 @@ package kevin.utils
 
 import java.math.BigDecimal
 import java.math.RoundingMode
+import kotlin.math.PI
 import kotlin.math.pow
 
 object MathUtils {
@@ -51,6 +52,8 @@ object MathUtils {
         }
         return distanceSq(p, lerp(v, w, (((p[0] - v[0]) * (w[0] - v[0]) + (p[1] - v[1]) * (w[1] - v[1])) / l2).coerceAtMost(1.0).coerceAtLeast(0.0)))
     }
+    fun toRadians(deg: Float): Float = deg / 180f * PI.toFloat()
+
     @JvmOverloads
     @JvmStatic
     fun simplifyPoints(

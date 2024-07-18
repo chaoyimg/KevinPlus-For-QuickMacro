@@ -15,71 +15,55 @@
 package kevin.module.modules.movement.speeds.other
 
 import kevin.event.UpdateEvent
+import kevin.main.KevinClient
 import kevin.module.FloatValue
 import kevin.module.ListValue
 import kevin.module.modules.movement.speeds.SpeedMode
-import kevin.module.modules.movement.speeds.other.Collision.rangeValue
-import kevin.utils.EntityUtils
-import kevin.utils.MinecraftInstance.mc
+import kevin.module.modules.player.Blink
 import kevin.utils.MovementUtils
-import kevin.utils.connection.getDistanceToEntityBox
-import kevin.utils.connection.getDistanceToEntityBox2
-import net.minecraft.entity.Entity
+import kevin.utils.RotationUtils
+import kevin.utils.rotation
+import net.minecraft.entity.EntityLivingBase
+import net.minecraft.entity.item.EntityArmorStand
 import kotlin.math.cos
 import kotlin.math.sin
 
 object Collision : SpeedMode("Collision") {
     private val mode by ListValue("Mode", arrayOf("EntityBHop","EntityBoost","Mix"),"EntityBoost")
-    private val rangeValue by FloatValue("CustomRange", 1.5f, 0f, 2f)
+    private val sizeValue by FloatValue("CustomRange", 1.5f, 0f, 2f)
     private val speedValue by FloatValue("Speed", 0.8f, 0f, 1f)
 
     override fun onUpdate(event: UpdateEvent) {
-        if (mc.thePlayer == null) return
+        if (!MovementUtils.isMoving || KevinClient.moduleManager.getModule(Blink::class.java)!!.state)
+            return
 
-        if (mc.thePlayer.moveForward == 0.0f && mc.thePlayer.moveStrafing == 0.0f) return
+        val playerBox = mc.thePlayer.entityBoundingBox.expand(sizeValue.toDouble(), sizeValue.toDouble(), sizeValue.toDouble())
 
-        var ticks = 0
-
-        if (getNearestEntityInRange() != null) {
-            ticks++
+        val collisions = mc.theWorld.loadedEntityList.count {
+            it != mc.thePlayer && it is EntityLivingBase &&
+                    it !is EntityArmorStand && playerBox.intersectsWith(it.entityBoundingBox)
         }
+        if (collisions == 0) return
+        val rotation = RotationUtils.serverRotation ?: mc.thePlayer.rotation
+
+        val yaw = MovementUtils.getRawDirection(rotation.yaw)
+        val boost = speedValue.toDouble() * collisions * 0.1
         when(mode) {
             "EntityBoost" -> {
-                val yaw = Math.toRadians(mc.thePlayer.rotationYaw.toDouble())
-                val boost = 0.1 * speedValue * ticks
                 mc.thePlayer.addVelocity(-sin(yaw) * boost, 0.0, cos(yaw) * boost)
             }
+
             "EntityBHop" -> {
-                if (getNearestEntityInRange() != null) {
-                    mc.thePlayer.jumpMovementFactor = (0.1 * speedValue * ticks).toFloat()
-                }
+                mc.thePlayer.jumpMovementFactor = boost.toFloat()
             }
+
             "Mix" -> {
-                if (getNearestEntityInRange() != null) {
-                    if (mc.thePlayer.onGround){
-                        val yaw = Math.toRadians(mc.thePlayer.rotationYaw.toDouble())
-                        val boost = 0.1 * speedValue * ticks
-                        mc.thePlayer.addVelocity(-sin(yaw) * boost, 0.0, cos(yaw) * boost)
-                    }else {
-                        mc.thePlayer.jumpMovementFactor = (0.1 * speedValue * ticks).toFloat()
-                    }
+                if (mc.thePlayer.onGround) {
+                    mc.thePlayer.addVelocity(-sin(yaw) * boost, 0.0, cos(yaw) * boost)
+                } else {
+                    mc.thePlayer.jumpMovementFactor = boost.toFloat()
                 }
             }
-        }
-    }
-
-    private fun getAllEntities(): List<Entity> {
-        return mc.theWorld.loadedEntityList.filter {
-            EntityUtils.isSelected(it, false)
-        }.toList()
-    }
-
-    private fun getNearestEntityInRange(): Entity? {
-        val entitiesInRange = getAllEntities().filter {
-            (mc.thePlayer.getDistanceToEntityBox(it) <= rangeValue)
-        }
-        return entitiesInRange.minByOrNull {
-            mc.thePlayer.getDistanceToEntityBox(it)
         }
     }
 }

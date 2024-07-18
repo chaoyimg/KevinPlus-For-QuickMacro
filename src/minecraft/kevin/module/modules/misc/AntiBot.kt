@@ -248,12 +248,7 @@ object AntiBot : Module("AntiBot","Prevents KillAura from attacking AntiCheat bo
         }
 
         if(AntiBot1Value.get()){
-            if(mc.thePlayer.inventory.armorInventory[3] != null){
-                val myHead = mc.thePlayer.inventory.armorInventory[3]
-                val myItemArmor = myHead!!.item!! as ItemArmor
-            }
-            val entityPlayer = entity as EntityPlayer
-
+            val entityPlayer = entity
             if(mc.thePlayer.inventory.armorInventory[3] != null && entityPlayer.inventory.armorInventory[3] != null){
                 val myHead = mc.thePlayer.inventory.armorInventory[3]
                 val myItemArmor = myHead!!.item!! as ItemArmor

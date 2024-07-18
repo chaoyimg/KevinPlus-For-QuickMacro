@@ -22,12 +22,15 @@ import kevin.module.modules.combat.KillAura
 import kevin.utils.MSTimer
 import kevin.utils.MovementUtils
 import kevin.utils.PacketUtils
-import kevin.utils.RandomUtils
 import net.minecraft.item.*
 import net.minecraft.network.Packet
 import net.minecraft.network.PacketBuffer
 import net.minecraft.network.play.INetHandlerPlayServer
 import net.minecraft.network.play.client.*
+import net.minecraft.network.play.server.S08PacketPlayerPosLook
+import net.minecraft.network.play.server.S2DPacketOpenWindow
+import net.minecraft.network.play.server.S2EPacketCloseWindow
+import net.minecraft.network.play.server.S2FPacketSetSlot
 import net.minecraft.util.BlockPos
 import net.minecraft.util.EnumFacing
 import java.util.*
@@ -46,7 +49,7 @@ class NoSlow : Module("NoItemSlow", "Cancels slowness effects caused by soulsand
     private val bowStrafeMultiplier = FloatValue("BowStrafeMultiplier", 1.0F, 0.2F, 1.0F)
 
     private val packetMode = ListValue("PacketMode", arrayOf("None","AntiCheat","AntiCheat2", "SwitchItem", "ReverseEventSwitchItem", "ReverseNCP","AAC","AAC5","Delay","Matrix","Vulcan", "Intave", "GrimAC", "GrimACSwitch", "Bug","SpecialGrim"),"None")
-
+    private val foodValue = BooleanValue("QuickMacroFoodBypass", true) { packetMode equal "SpecialGrim" }
     val soulsandValue = BooleanValue("Soulsand", true)
     val liquidPushValue = BooleanValue("LiquidPush", true)
 
@@ -59,7 +62,18 @@ class NoSlow : Module("NoItemSlow", "Cancels slowness effects caused by soulsand
     private var packetBuf = LinkedList<Packet<INetHandlerPlayServer>>()
     private var aura: KillAura? = null
     private var count = 0
+    private var shouldSlow = true
+    private var needreportdelay = false
+    private val reportdelay = MSTimer()
     private var lastItem: ItemStack? = null
+    @EventTarget
+    fun onWorld(event: WorldEvent) {
+        if (foodValue.get()) {
+            reportdelay.reset()
+            needreportdelay =false
+        }
+    }
+
     private val isBlocking: Boolean
         get() = (mc.thePlayer.isUsingItem || (KevinClient.moduleManager.getModule(KillAura::class.java)).blockingStatus) && mc.thePlayer.heldItem != null && mc.thePlayer.heldItem.item is ItemSword
 
@@ -102,6 +116,15 @@ class NoSlow : Module("NoItemSlow", "Cancels slowness effects caused by soulsand
                         mc.netHandler.networkManager.sendPacket(C08PacketPlayerBlockPlacement(mc.thePlayer.inventory.getCurrentItem()))
                     }
                 }
+                if (foodValue.get() && (mc.thePlayer.heldItem.item is ItemFood || mc.thePlayer.heldItem.item is ItemPotion || mc.thePlayer.heldItem.item is ItemBucketMilk)){
+                    if (shouldSlow) {
+                        consumeForwardMultiplier.set(0.2F)
+                        consumeStrafeMultiplier.set(0.2F)
+                    } else {
+                        consumeForwardMultiplier.set(1F)
+                        consumeStrafeMultiplier.set(1F)
+                    }
+                }
             }
         }
         if (packetMode equal "GrimACSwitch" && event.eventState == EventState.PRE) {
@@ -111,7 +134,7 @@ class NoSlow : Module("NoItemSlow", "Cancels slowness effects caused by soulsand
             }
         }
         if (!isBlocking && !isUsing) return
-        val isUsingNotBlocking = !isBlocking
+        !isBlocking
 
         when(packetMode.get()){
             "AntiCheat" -> if (isBlocking) {
@@ -254,6 +277,42 @@ class NoSlow : Module("NoItemSlow", "Cancels slowness effects caused by soulsand
         if(mc.thePlayer == null || mc.theWorld == null)
             return
         val packet = event.packet
+        if (packetMode equal "SpecialGrim" && foodValue.get()) {
+
+            if (packet is C08PacketPlayerBlockPlacement) {
+                val stack = mc.thePlayer.heldItem.item ?: return
+                if ((stack is ItemFood || stack is ItemPotion || stack is ItemBucketMilk)) {
+                    shouldSlow = true
+                        if (!needreportdelay || (reportdelay.hasTimePassed(10000))){
+                            mc.thePlayer.sendChatMessage("/report")
+                        }
+                }
+            }
+            if (packet is S2FPacketSetSlot) {
+                if (packet.slot >= 54) {
+                    packet.windowId = 0
+                    packet.slot -= 45
+                }
+                if (packet.slot == mc.thePlayer.inventory.currentItem + 36) {
+                    if (packet.item.stackSize == mc.thePlayer.inventory.getCurrentItem().stackSize){
+                        event.cancelEvent()
+                    }else {
+                        mc.netHandler.addToSendQueue(C0DPacketCloseWindow())
+                        shouldSlow = true
+                    }
+                }
+            }
+            if (packet is S2DPacketOpenWindow && packet.slotCount == 54 && packet.windowTitle.unformattedText == "§7举报系统-请选择你要举报的玩家") {
+                event.cancelEvent()
+                shouldSlow = false
+                reportdelay.reset()
+                needreportdelay = true
+            }
+            if (packet is S08PacketPlayerPosLook) {
+                 shouldSlow = true
+            }
+
+        }
         if((packetMode equal "Matrix" || packetMode equal "Vulcan") && nextTemp) {
             if((packet is C07PacketPlayerDigging || packet is C08PacketPlayerBlockPlacement) && isBlocking) {
                 event.cancelEvent()
